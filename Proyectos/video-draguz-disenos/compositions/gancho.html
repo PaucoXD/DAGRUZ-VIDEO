@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #ga-tee { position: absolute; left: 190px; top: 170px; width: 700px; height: 760px; }
+    #ga-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 28px rgba(160, 120, 255, 0.5)); }
+    #ga-box { position: absolute; left: 225px; top: 230px; width: 250px; height: 290px; border: 6px dashed #c9c3d8; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 170px; font-weight: 900; color: #c9c3d8; }
+    #ga-q { position: absolute; left: 40px; right: 40px; top: 1000px; text-align: center; font-size: 110px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+    #ga-ok { position: absolute; left: 0; right: 0; top: 1260px; text-align: center; font-family: "JB", monospace; font-size: 50px; font-weight: 700; letter-spacing: 0.1em; color: #6ee38a; opacity: 0; }
+    #ga-big { position: absolute; left: 40px; right: 40px; top: 1400px; text-align: center; font-size: 96px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.02; opacity: 0; }
+    #ga-big em { font-style: normal; color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+    <div id="ga-scene">
+      <div id="ga-tee"><img id="ga-img" src="assets/img/tee-regular.png" alt="" /><div id="ga-box">?</div></div>
+      <div id="ga-q">¿No tienes diseño?</div>
+      <div id="ga-ok">✓ NO HAY PROBLEMA</div>
+      <div id="ga-big">Diseños listos<br /><em>para estampar</em></div>
+    </div>
+  </div>
+  <script>
+    const T = { ok: 1.58, big: 4.22, end: 6.1 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ga-box", { rotation: -6 }, { rotation: 6, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.2);
+    tl.fromTo("#ga-ok", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.ok);
+    tl.to("#ga-box", { scale: 0, opacity: 0, duration: 0.25, ease: "back.in(2)" }, T.big - 0.2);
+    tl.fromTo("#ga-big", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, T.big);
+    tl.to("#ga-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["gancho"] = tl;
+  </script>
+</template>

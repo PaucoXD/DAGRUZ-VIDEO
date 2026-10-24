@@ -1,0 +1,35 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .ca-s { position: absolute; inset: 0; opacity: 0; }
+    .ca-s img { position: absolute; left: 90px; top: 220px; width: 900px; height: 976px; object-fit: contain; filter: drop-shadow(0 0 36px rgba(160, 120, 255, 0.5)); }
+    .ca-n { position: absolute; left: 0; right: 0; top: 1270px; text-align: center; font-size: 130px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+    .ca-c { position: absolute; left: 0; right: 0; top: 1440px; text-align: center; font-family: "JB", monospace; font-size: 46px; font-weight: 700; letter-spacing: 0.14em; color: #e3000f; }
+    #ca-count { position: absolute; left: 0; right: 0; top: 120px; text-align: center; font-family: "JB", monospace; font-size: 44px; font-weight: 700; letter-spacing: 0.12em; color: #c9c3d8; }
+  </style>
+  <div id="root" data-composition-id="carrusel" data-width="1080" data-height="1920">
+    <div id="ca-scene">
+      <div id="ca-count">CATÁLOGO DRAGUZ SHOP</div>
+      <div class="ca-s" id="ca-1"><img src="assets/img/tees/01-samurai-oversize.png" alt="" /><div class="ca-n">Samurái</div><div class="ca-c">OVERSIZE</div></div>
+      <div class="ca-s" id="ca-2"><img src="assets/img/tees/02-gato-regular.png" alt="" /><div class="ca-n">Gato</div><div class="ca-c">REGULAR</div></div>
+      <div class="ca-s" id="ca-3"><img src="assets/img/tees/03-lobo-oversize.png" alt="" /><div class="ca-n">Lobo</div><div class="ca-c">OVERSIZE</div></div>
+      <div class="ca-s" id="ca-4"><img src="assets/img/tees/04-mono-regular.png" alt="" /><div class="ca-n">Mono</div><div class="ca-c">REGULAR</div></div>
+      <div class="ca-s" id="ca-5"><img src="assets/img/tees/05-oveja-negra-oversize.png" alt="" /><div class="ca-n">Oveja negra</div><div class="ca-c">OVERSIZE</div></div>
+      <div class="ca-s" id="ca-6"><img src="assets/img/tees/06-cuervo-regular.png" alt="" /><div class="ca-n">Cuervo</div><div class="ca-c">REGULAR</div></div>
+      <div class="ca-s" id="ca-7"><img src="assets/img/tees/07-rinoceronte-oversize.png" alt="" /><div class="ca-n">Rinoceronte</div><div class="ca-c">OVERSIZE</div></div>
+    </div>
+  </div>
+  <script>
+    const T = { s: [0.08, 0.8, 1.52, 2.24, 2.68, 3.6, 4.2], end: 5.3 };
+    const tl = gsap.timeline({ paused: true });
+    T.s.forEach((t, i) => {
+      const id = `#ca-${i + 1}`;
+      tl.fromTo(id, { opacity: 0, x: 300, scale: 0.9 }, { opacity: 1, x: 0, scale: 1, duration: 0.22, ease: "expo.out" }, t);
+      if (i < T.s.length - 1) tl.to(id, { opacity: 0, x: -300, duration: 0.16, ease: "power2.in" }, T.s[i + 1] - 0.08);
+    });
+    tl.fromTo("#ca-7 img", { scale: 1 }, { scale: 1.05, duration: 0.9, ease: "sine.out" }, 4.3);
+    tl.to("#ca-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["carrusel"] = tl;
+  </script>
+</template>

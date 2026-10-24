@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; perspective: 2200px; }
+    .card { position: absolute; width: 860px; height: 540px; border-radius: 34px; overflow: hidden; background: linear-gradient(135deg, #241a33 0%, #09090c 70%); border: 3px solid rgba(255, 255, 255, 0.14); box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 60px rgba(140, 90, 255, 0.25); backface-visibility: hidden; }
+    .card-stripe { position: absolute; left: 0; top: 0; bottom: 0; width: 22px; background: #e3000f; }
+    .card-logo { position: absolute; left: 70px; top: 60px; width: 420px; }
+    .card-kick { position: absolute; left: 74px; top: 300px; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.18em; color: #c9c3d8; }
+    .card-code { position: absolute; left: 74px; top: 350px; font-family: "JB", monospace; font-size: 54px; font-weight: 700; letter-spacing: 0.08em; color: #ffffff; }
+    .card-dots { position: absolute; left: 74px; bottom: 56px; display: flex; gap: 14px; }
+    .card-dots i { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.4); }
+    .card-dots i.r { border-color: #e3000f; background: #e3000f; }
+    #tar-wrap { position: absolute; left: 110px; top: 330px; width: 860px; height: 540px; transform-style: preserve-3d; }
+    #tar-back { transform: rotateY(180deg); background: #f2efe8; opacity: 0; }
+    #tar-qr { position: absolute; left: 60px; top: 60px; width: 420px; height: 420px; }
+    #tar-back-t { position: absolute; left: 520px; top: 150px; right: 40px; color: #09090c; font-size: 52px; font-weight: 900; line-height: 1.05; text-transform: uppercase; }
+    #tar-back-t em { font-style: normal; color: #e3000f; }
+    #tar-copy { position: absolute; left: 60px; right: 60px; top: 1000px; text-align: center; font-size: 104px; font-weight: 900; line-height: 1.04; letter-spacing: -0.035em; text-transform: uppercase; }
+    .tar-w { display: inline-block; margin: 0 0.09em; opacity: 0; }
+    .tar-w.acc { color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="tarjeta" data-width="1080" data-height="1920">
+    <div id="tar-scene">
+      <div id="tar-wrap">
+        <div class="card" id="tar-front"><div class="card-stripe"></div><img class="card-logo" src="assets/img/logo.png" alt="" /><div class="card-kick">TARJETA DE CLIENTE</div><div class="card-code">DZ-0001-K7Q</div><div class="card-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="r"></i></div></div>
+        <div class="card" id="tar-back"><img id="tar-qr" src="assets/img/qr.svg" alt="" /><div id="tar-back-t">Escanea y <em>actívala</em></div></div>
+      </div>
+      <div id="tar-copy">
+        <span class="tar-w">¿Ya</span><span class="tar-w">tienes</span><span class="tar-w">tu</span><span class="tar-w">tarjeta</span><br /><span class="tar-w acc">Draguz</span><span class="tar-w acc">Shop?</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#tar-wrap", { y: -40, rotationX: 18, rotationY: -22 }, { y: 0, rotationX: 6, rotationY: -8, duration: 0.8, ease: "power3.out" }, 0);
+    tl.to("#tar-wrap", { rotationX: 0, rotationY: 8, duration: 1.0, ease: "sine.inOut" }, 0.8);
+    [0.38, 0.54, 0.82, 0.94, 1.34, 1.9].forEach((t, i) => {
+      tl.fromTo(`.tar-w:nth-of-type(${i + 1})`, { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, t);
+    });
+    // La tarjeta se voltea y enseña el QR
+    tl.to("#tar-copy", { opacity: 0, y: 40, duration: 0.2, ease: "power2.in" }, 2.05);
+    tl.to("#tar-back", { opacity: 1, duration: 0.01 }, 2.2);
+    tl.to("#tar-front", { opacity: 0, duration: 0.01 }, 2.2);
+    tl.to("#tar-wrap", { rotationY: 180, y: 120, duration: 0.3, ease: "power2.inOut" }, 2.05);
+    window.__timelines["tarjeta"] = tl;
+  </script>
+</template>

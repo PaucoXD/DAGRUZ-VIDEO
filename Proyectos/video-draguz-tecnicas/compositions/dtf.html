@@ -1,0 +1,74 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .hd { position: absolute; left: 70px; top: 120px; display: flex; align-items: baseline; gap: 26px; }
+    .hd-n { font-family: "JB", monospace; font-size: 56px; font-weight: 700; color: #e3000f; }
+    .hd-t { font-size: 120px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+    #dtf-tee { position: absolute; left: 170px; top: 330px; width: 740px; height: 800px; }
+    #dtf-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 28px rgba(160, 120, 255, 0.5)); }
+    #dtf-art { position: absolute; left: 245px; top: 225px; width: 250px; height: 250px; opacity: 0; }
+    #dtf-film { position: absolute; left: 360px; top: 500px; width: 360px; height: 360px; border-radius: 10px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)); border: 3px solid rgba(255, 255, 255, 0.55); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; opacity: 0; }
+    #dtf-film svg { width: 250px; height: 250px; }
+    #dtf-press { position: absolute; left: 330px; top: 470px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 220, 160, 0.9), rgba(255, 120, 60, 0.3) 50%, transparent 72%); opacity: 0; }
+    .row { position: absolute; left: 100px; font-size: 56px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; display: flex; align-items: center; gap: 28px; opacity: 0; }
+    .row i { width: 58px; height: 58px; border-radius: 12px; background: #e3000f; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 40px; }
+    #dtf-heat { position: absolute; left: 0; right: 0; text-align: center; top: 280px; font-family: "JB", monospace; font-size: 40px; font-weight: 700; color: #ffb37a; letter-spacing: 0.1em; opacity: 0; }
+    #dtf-r1 { top: 1230px; } #dtf-r2 { top: 1350px; } #dtf-r3 { top: 1470px; }
+  </style>
+  <div id="root" data-composition-id="dtf" data-width="1080" data-height="1920">
+    <div id="dtf-scene">
+      <div class="hd" id="dtf-hd"><span class="hd-n">01</span><span class="hd-t">DTF TEXTIL</span></div>
+      <div id="dtf-tee">
+        <img id="dtf-img" src="assets/img/tee-regular.png" alt="" />
+        <svg id="dtf-art" viewBox="0 0 340 340">
+          <defs>
+            <linearGradient id="dtf-g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff2d55" /><stop offset="0.3" stop-color="#ff9500" /><stop offset="0.55" stop-color="#ffd60a" /><stop offset="0.8" stop-color="#8f7bff" /><stop offset="1" stop-color="#00c2ff" />
+            </linearGradient>
+          </defs>
+          <circle cx="170" cy="170" r="160" fill="url(#dtf-g)" />
+          <circle cx="170" cy="170" r="122" fill="none" stroke="#09090c" stroke-width="6" stroke-dasharray="4 10" />
+          <path d="M190 40 L105 190 H165 L140 300 L240 140 H178 Z" fill="#ffffff" stroke="#09090c" stroke-width="8" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div id="dtf-press"></div>
+      <div id="dtf-heat">▼ CALOR ▼</div>
+      <div id="dtf-film">
+        <svg viewBox="0 0 340 340">
+          <defs>
+            <linearGradient id="dtf-g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff2d55" /><stop offset="0.3" stop-color="#ff9500" /><stop offset="0.55" stop-color="#ffd60a" /><stop offset="0.8" stop-color="#8f7bff" /><stop offset="1" stop-color="#00c2ff" />
+            </linearGradient>
+          </defs>
+          <circle cx="170" cy="170" r="160" fill="url(#dtf-g2)" />
+          <circle cx="170" cy="170" r="122" fill="none" stroke="#09090c" stroke-width="6" stroke-dasharray="4 10" />
+          <path d="M190 40 L105 190 H165 L140 300 L240 140 H178 Z" fill="#ffffff" stroke="#09090c" stroke-width="8" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="row" id="dtf-r1"><i>✓</i>A todo color</div>
+      <div class="row" id="dtf-r2"><i>✓</i>Degradados y detalle</div>
+      <div class="row" id="dtf-r3"><i>✓</i>Playeras y hoodies</div>
+    </div>
+  </div>
+  <script>
+    const T = { film: 1.5, press: 4.75, peel: 5.3, r1: 2.46, r2: 3.36, r3: 6.16, end: 7.4 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dtf-hd", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.1);
+    tl.fromTo("#dtf-tee", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.15);
+    tl.fromTo("#dtf-film", { opacity: 0, y: -520, rotation: -12 }, { opacity: 1, y: 0, rotation: 0, duration: 0.4, ease: "power3.out" }, T.film);
+    tl.fromTo("#dtf-heat", { opacity: 0 }, { opacity: 1, duration: 0.15 }, T.press - 0.1);
+    tl.to("#dtf-heat", { opacity: 0, duration: 0.2 }, T.peel + 0.4);
+    tl.fromTo("#dtf-film", { scale: 1 }, { scale: 0.96, duration: 0.15, yoyo: true, repeat: 1, immediateRender: false }, T.press);
+    tl.fromTo("#dtf-press", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.1, duration: 0.15, ease: "power2.out" }, T.press);
+    tl.to("#dtf-press", { opacity: 0, duration: 0.3, ease: "power2.in" }, T.press + 0.15);
+    tl.fromTo("#dtf-art", { opacity: 0 }, { opacity: 1, duration: 0.05 }, T.peel);
+    tl.to("#dtf-film", { x: 520, y: -380, rotation: 28, opacity: 0, duration: 0.45, ease: "power3.in" }, T.peel);
+    tl.fromTo("#dtf-art", { scale: 1 }, { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.peel + 0.05);
+    [["#dtf-r1", T.r1], ["#dtf-r2", T.r2], ["#dtf-r3", T.r3]].forEach(([id, t]) => {
+      tl.fromTo(id, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, t);
+    });
+    tl.to("#dtf-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["dtf"] = tl;
+  </script>
+</template>

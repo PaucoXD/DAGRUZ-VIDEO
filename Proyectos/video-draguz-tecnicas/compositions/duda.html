@@ -1,0 +1,29 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .du-b { position: absolute; top: 470px; width: 420px; height: 150px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 72px; font-weight: 900; opacity: 0; }
+    #du-1 { left: 90px; background: #e3000f; } #du-2 { left: 570px; background: #2c275f; border: 5px solid #8f7bff; }
+    #du-q { position: absolute; left: 40px; right: 40px; top: 760px; text-align: center; font-size: 130px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; opacity: 0; }
+    #du-a { position: absolute; left: 40px; right: 40px; top: 1080px; text-align: center; font-size: 96px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.05; opacity: 0; }
+    #du-a em { font-style: normal; color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="duda" data-width="1080" data-height="1920">
+    <div id="du-scene">
+      <div class="du-b" id="du-1">TEXTIL</div><div class="du-b" id="du-2">UV</div>
+      <div id="du-q">¿No sabes cuál?</div>
+      <div id="du-a">Cotiza y<br /><em>te decimos</em></div>
+    </div>
+  </div>
+  <script>
+    const T = { q: 0.06, a: 1.0, end: 2.4 };
+    const tl = gsap.timeline({ paused: true });
+    ["#du-1", "#du-2"].forEach((id, i) => {
+      tl.fromTo(id, { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(1.8)" }, 0.05 + i * 0.1);
+      tl.to(id, { rotation: i % 2 ? 6 : -6, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.45 + i * 0.08);
+    });
+    tl.fromTo("#du-q", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: "expo.out" }, T.q);
+    tl.fromTo("#du-a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.a);
+    tl.to("#du-scene", { scale: 0.9, opacity: 0, filter: "blur(12px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["duda"] = tl;
+  </script>
+</template>

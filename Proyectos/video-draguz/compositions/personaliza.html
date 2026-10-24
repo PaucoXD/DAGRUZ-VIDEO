@@ -1,0 +1,52 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #per-tee { position: absolute; left: 190px; top: 180px; width: 700px; height: 759px; }
+    #per-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 28px rgba(160, 120, 255, 0.55)); }
+    #per-zone { position: absolute; left: 245px; top: 180px; width: 210px; height: 210px; border: 5px dashed rgba(255, 255, 255, 0.75); border-radius: 12px; }
+    #per-design { position: absolute; left: 245px; top: 180px; width: 210px; height: 210px; }
+    #per-copy { position: absolute; left: 60px; right: 60px; top: 1060px; text-align: center; font-size: 92px; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; text-transform: uppercase; }
+    .per-w { display: inline-block; margin: 0 0.09em; opacity: 0; }
+    .per-w.acc { color: #e3000f; }
+    #per-tags { position: absolute; left: 0; right: 0; top: 1420px; display: flex; justify-content: center; gap: 22px; }
+    .per-tag { padding: 16px 34px; border-radius: 8px; font-family: "JB", monospace; font-size: 38px; font-weight: 700; letter-spacing: 0.1em; background: rgba(42, 27, 61, 0.85); border: 3px solid #e3000f; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="personaliza" data-width="1080" data-height="1920">
+    <div id="per-scene">
+      <div id="per-tee">
+        <img id="per-img" src="assets/img/tee-regular.png" alt="" />
+        <div id="per-zone"></div>
+        <svg id="per-design" viewBox="0 0 220 220">
+          <circle cx="110" cy="110" r="100" fill="#e3000f" />
+          <path d="M122 30 L70 120 L104 120 L88 190 L152 92 L118 92 L138 30 Z" fill="#ffd400" stroke="#09090c" stroke-width="6" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div id="per-copy">
+        <span class="per-w">Personalízala</span><br />
+        <span class="per-w">con</span><span class="per-w">tu</span><span class="per-w acc">propio</span><span class="per-w acc">diseño</span>
+      </div>
+      <div id="per-tags"><span class="per-tag">DTF</span><span class="per-tag">UV</span><span class="per-tag">VINIL</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#per-tee", { opacity: 0, y: 80, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 0.0);
+    tl.fromTo("#per-zone", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 0.25);
+    // El diseño se "estampa" en la playera
+    tl.fromTo("#per-design", { opacity: 0, scale: 2.4, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, 0.85);
+    tl.to("#per-zone", { opacity: 0, duration: 0.15 }, 1.15);
+    tl.fromTo("#per-tee", { x: 0 }, { x: 10, duration: 0.04, repeat: 3, yoyo: true, ease: "none" }, 1.15);
+
+    [0.28, 0.88, 1.04, 1.2, 1.4].forEach((t, i) => {
+      tl.fromTo(`.per-w:nth-of-type(${i + 1})`, { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, t);
+    });
+    [0.45, 0.6, 0.75].forEach((t, i) => {
+      tl.fromTo(`.per-tag:nth-child(${i + 1})`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2)" }, t);
+    });
+
+    tl.to("#per-scene", { opacity: 0, duration: 0.18, ease: "power2.in" }, 2.1);
+    window.__timelines["personaliza"] = tl;
+  </script>
+</template>

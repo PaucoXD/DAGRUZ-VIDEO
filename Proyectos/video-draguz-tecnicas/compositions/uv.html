@@ -1,0 +1,69 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .hd { position: absolute; left: 70px; top: 120px; display: flex; align-items: baseline; gap: 26px; }
+    .hd-n { font-family: "JB", monospace; font-size: 56px; font-weight: 700; color: #e3000f; }
+    .hd-t { font-size: 120px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+    .row { position: absolute; left: 100px; font-size: 56px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; display: flex; align-items: center; gap: 28px; opacity: 0; }
+    .row i { width: 58px; height: 58px; border-radius: 12px; background: #e3000f; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 40px; }
+    .row i { background: #8f7bff; }
+    #uv-r1 { top: 1230px; } #uv-r2 { top: 1350px; } #uv-r3 { top: 1470px; }
+    #uv-mug { position: absolute; left: 140px; top: 400px; width: 760px; height: 676px; }
+    #uv-img { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 30px rgba(143, 123, 255, 0.55)); }
+    #uv-art { position: absolute; left: 118px; top: 190px; width: 300px; height: 300px; opacity: 0; }
+    #uv-stk { position: absolute; left: 228px; top: 560px; width: 360px; height: 360px; border-radius: 22px; background: rgba(255, 255, 255, 0.18); border: 3px solid rgba(255, 255, 255, 0.6); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; opacity: 0; }
+    #uv-stk svg { width: 300px; height: 300px; }
+    #uv-tag { position: absolute; right: 70px; top: 150px; font-family: "JB", monospace; font-size: 40px; font-weight: 700; color: #cfc6ff; letter-spacing: 0.1em; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="uv" data-width="1080" data-height="1920">
+    <div id="uv-scene">
+      <div class="hd" id="uv-hd"><span class="hd-n">02</span><span class="hd-t">DTF UV</span></div>
+      <div id="uv-tag">SIN CALOR ✓</div>
+      <div id="uv-mug">
+        <img id="uv-img" src="assets/img/mug.png" alt="" />
+        <svg id="uv-art" viewBox="0 0 340 340">
+          <defs>
+            <linearGradient id="uv-g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff2d55" /><stop offset="0.3" stop-color="#ff9500" /><stop offset="0.55" stop-color="#ffd60a" /><stop offset="0.8" stop-color="#8f7bff" /><stop offset="1" stop-color="#00c2ff" />
+            </linearGradient>
+          </defs>
+          <circle cx="170" cy="170" r="160" fill="url(#uv-g)" />
+          <circle cx="170" cy="170" r="122" fill="none" stroke="#09090c" stroke-width="6" stroke-dasharray="4 10" />
+          <path d="M190 40 L105 190 H165 L140 300 L240 140 H178 Z" fill="#ffffff" stroke="#09090c" stroke-width="8" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div id="uv-stk"><svg viewBox="0 0 340 340">
+          <defs>
+            <linearGradient id="uv-g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff2d55" /><stop offset="0.3" stop-color="#ff9500" /><stop offset="0.55" stop-color="#ffd60a" /><stop offset="0.8" stop-color="#8f7bff" /><stop offset="1" stop-color="#00c2ff" />
+            </linearGradient>
+          </defs>
+          <circle cx="170" cy="170" r="160" fill="url(#uv-g2)" />
+          <circle cx="170" cy="170" r="122" fill="none" stroke="#09090c" stroke-width="6" stroke-dasharray="4 10" />
+          <path d="M190 40 L105 190 H165 L140 300 L240 140 H178 Z" fill="#ffffff" stroke="#09090c" stroke-width="8" stroke-linejoin="round" />
+        </svg></div>
+      <div class="row" id="uv-r1"><i>✓</i>Se pega sin calor</div>
+      <div class="row" id="uv-r2"><i>✓</i>Tazas y termos</div>
+      <div class="row" id="uv-r3"><i>✓</i>Superficies duras</div>
+    </div>
+  </div>
+  <script>
+    const T = { stk: 1.52, stick: 3.2, peel: 3.75, r1: 3.52, r2: 4.4, r3: 5.44, end: 6.75 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#uv-hd", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.1);
+    tl.fromTo("#uv-mug", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 0.15);
+    tl.fromTo("#uv-stk", { opacity: 0, y: -520, rotation: 14 }, { opacity: 1, y: 0, rotation: -4, duration: 0.45, ease: "power3.out" }, T.stk);
+    tl.to("#uv-stk", { rotation: 4, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.stk + 0.5);
+    tl.to("#uv-stk", { rotation: 0, scale: 0.92, duration: 0.2, ease: "power2.in" }, T.stick);
+    tl.fromTo("#uv-art", { opacity: 0 }, { opacity: 1, duration: 0.05 }, T.peel);
+    tl.to("#uv-stk", { x: 560, y: -360, rotation: 30, opacity: 0, duration: 0.45, ease: "power3.in" }, T.peel);
+    tl.fromTo("#uv-tag", { opacity: 0 }, { opacity: 1, duration: 0.2 }, T.r1);
+    tl.fromTo("#uv-mug", { rotation: 0 }, { rotation: -3, duration: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, T.peel + 0.1);
+    [["#uv-r1", T.r1], ["#uv-r2", T.r2], ["#uv-r3", T.r3]].forEach(([id, t]) => {
+      tl.fromTo(id, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, t);
+    });
+    tl.to("#uv-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["uv"] = tl;
+  </script>
+</template>

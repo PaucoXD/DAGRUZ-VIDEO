@@ -1,0 +1,62 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #dtf-kick { position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.2em; color: #ff1a2b; }
+    #dtf-title { position: absolute; left: 0; right: 0; top: 260px; text-align: center; font-size: 150px; font-weight: 900; letter-spacing: -0.04em; text-transform: uppercase; }
+    #dtf-drum { position: absolute; left: 190px; top: 500px; width: 700px; height: 700px; }
+    #dtf-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #dtf-tee { position: absolute; left: 130px; top: 120px; width: 440px; height: 477px; }
+    #dtf-tee img { position: absolute; }
+    #dtf-img { inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(160, 120, 255, 0.5)); }
+    #dtf-print { left: 31%; top: 24%; width: 38%; }
+    #dtf-copy { position: absolute; left: 60px; right: 60px; top: 1270px; text-align: center; font-size: 80px; font-weight: 900; line-height: 1.06; letter-spacing: -0.03em; text-transform: uppercase; }
+    .dtf-w { display: inline-block; margin: 0 0.09em; opacity: 0; }
+    .dtf-w.acc { color: #e3000f; }
+    #dtf-ok { position: absolute; left: 290px; right: 290px; top: 1660px; height: 110px; border-radius: 55px; background: #ffffff; color: #09090c; font-size: 44px; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 16px; opacity: 0; }
+    #dtf-ok i { width: 54px; height: 54px; border-radius: 50%; background: #e3000f; display: inline-flex; align-items: center; justify-content: center; }
+  </style>
+  <div id="root" data-composition-id="dtf" data-width="1080" data-height="1920">
+    <div id="dtf-scene">
+      <div id="dtf-kick">[ ESTAMPADO ]</div>
+      <div id="dtf-title">DTF</div>
+      <div id="dtf-drum">
+        <svg id="dtf-ring" viewBox="0 0 700 700">
+          <circle cx="350" cy="350" r="330" fill="rgba(42,27,61,0.55)" stroke="#3a3a46" stroke-width="14" />
+          <g id="dtf-spin">
+            <circle cx="350" cy="350" r="300" fill="none" stroke="#7aa7ff" stroke-width="10" stroke-dasharray="30 26" opacity="0.7" />
+            <circle cx="350" cy="50" r="16" fill="#7aa7ff" /><circle cx="650" cy="350" r="16" fill="#7aa7ff" />
+            <circle cx="350" cy="650" r="16" fill="#7aa7ff" /><circle cx="50" cy="350" r="16" fill="#7aa7ff" />
+          </g>
+        </svg>
+        <div id="dtf-tee">
+          <img id="dtf-img" src="assets/img/tee-regular.png" alt="" />
+          <img id="dtf-print" src="assets/img/logo.png" alt="" />
+        </div>
+      </div>
+      <div id="dtf-copy">
+        <span class="dtf-w">Colores</span><span class="dtf-w">que</span><span class="dtf-w">aguantan</span><br />
+        <span class="dtf-w acc">lavada</span><span class="dtf-w acc">tras</span><span class="dtf-w acc">lavada</span>
+      </div>
+      <div id="dtf-ok"><i><svg width="30" height="30" viewBox="0 0 30 30"><path d="M6 15 l6 6 l12 -13" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /></svg></i>Colores vivos</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#dtf-kick", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.05);
+    tl.fromTo("#dtf-title", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 0.6);
+    tl.fromTo("#dtf-drum", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 0.1);
+    // El tambor gira, la playera da vueltas y el estampado sigue intacto
+    tl.fromTo("#dtf-spin", { rotation: 0, svgOrigin: "350 350" }, { rotation: 720, svgOrigin: "350 350", duration: 3.7, ease: "power1.inOut" }, 0.1);
+    tl.fromTo("#dtf-tee", { rotation: 0 }, { rotation: -360, duration: 2.5, ease: "power2.inOut" }, 0.5);
+
+    [1.48, 1.8, 1.88, 2.36, 2.92, 3.16].forEach((t, i) => {
+      tl.fromTo(`.dtf-w:nth-of-type(${i + 1})`, { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, t);
+    });
+    tl.fromTo("#dtf-ok", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 3.05);
+
+    tl.to("#dtf-scene", { scale: 1.15, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, 3.68);
+    window.__timelines["dtf"] = tl;
+  </script>
+</template>

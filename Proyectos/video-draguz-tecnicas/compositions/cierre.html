@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #cie-logo { position: absolute; left: 90px; width: 900px; top: 400px; height: 386px; background: url(assets/img/logo.png) center / contain no-repeat; filter: drop-shadow(0 0 40px rgba(227, 0, 15, 0.45)); opacity: 0; }
+    #cie-line { position: absolute; left: 40px; right: 40px; top: 880px; text-align: center; font-size: 104px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.02; text-transform: uppercase; }
+    .cie-w { display: inline-block; margin: 0 0.09em; opacity: 0; }
+    .cie-w.acc { color: #e3000f; }
+    #cie-feat { position: absolute; left: 0; right: 0; top: 1130px; text-align: center; font-family: "JB", monospace; font-size: 34px; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; opacity: 0; }
+    #cie-cta { position: absolute; left: 200px; right: 200px; top: 1290px; height: 140px; border-radius: 12px; background: #e3000f; color: #ffffff; font-size: 56px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; justify-content: center; opacity: 0; box-shadow: 0 20px 60px rgba(227, 0, 15, 0.45); }
+  </style>
+  <div id="root" data-composition-id="cierre" data-width="1080" data-height="1920">
+    <div id="cie-logo"></div>
+    <div id="cie-line"><span class="cie-w">Define</span><span class="cie-w">your</span><span class="cie-w acc">different</span></div>
+    <div id="cie-feat">DTF TEXTIL · DTF UV</div>
+    <div id="cie-cta">Cotiza en línea</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#cie-logo", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.0);
+    tl.fromTo("#cie-logo", { x: 0 }, { x: 10, duration: 0.04, repeat: 5, yoyo: true, ease: "none" }, 0.1);
+    [1.14, 1.46, 1.86].forEach((t, i) => {
+      tl.fromTo(`.cie-w:nth-child(${i + 1})`, { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.18, ease: "power3.out" }, t);
+    });
+    tl.fromTo("#cie-feat", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 2.0);
+    tl.fromTo("#cie-cta", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 2.2);
+    tl.to("#cie-cta", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 2.7);
+    window.__timelines["cierre"] = tl;
+  </script>
+</template>

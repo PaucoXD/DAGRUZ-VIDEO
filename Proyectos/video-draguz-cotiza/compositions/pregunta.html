@@ -1,0 +1,40 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #pre-tee { position: absolute; left: 250px; top: 170px; width: 580px; height: 630px; }
+    #pre-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 28px rgba(160, 120, 255, 0.55)); }
+    #pre-logo { position: absolute; left: 31%; top: 24%; width: 38%; }
+    #pre-tag { position: absolute; left: 640px; top: 150px; width: 260px; height: 330px; transform-origin: 130px 0px; }
+    #pre-copy { position: absolute; left: 60px; right: 60px; top: 900px; text-align: center; font-size: 100px; font-weight: 900; line-height: 1.04; letter-spacing: -0.035em; text-transform: uppercase; }
+    .pre-w { display: inline-block; margin: 0 0.09em; opacity: 0; }
+    .pre-w.acc { color: #e3000f; }
+    #pre-sub { position: absolute; left: 0; right: 0; top: 1330px; text-align: center; font-family: "JB", monospace; font-size: 46px; font-weight: 700; letter-spacing: 0.12em; color: #c9c3d8; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="pregunta" data-width="1080" data-height="1920">
+    <div id="pre-scene">
+      <div id="pre-tee"><img id="pre-img" src="assets/img/tee-regular.png" alt="" /><img id="pre-logo" src="assets/img/logo.png" alt="" /></div>
+      <svg id="pre-tag" viewBox="0 0 260 330">
+        <line x1="130" y1="0" x2="130" y2="70" stroke="#c9c3d8" stroke-width="5" />
+        <path d="M60 70 H200 L240 120 V310 a14 14 0 0 1 -14 14 H34 a14 14 0 0 1 -14 -14 V120 Z" fill="#e3000f" stroke="#ffffff" stroke-width="6" />
+        <circle cx="130" cy="105" r="14" fill="#09090c" />
+        <text x="130" y="250" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="120" fill="#ffffff">$?</text>
+      </svg>
+      <div id="pre-copy"><span class="pre-w">¿Cuánto</span><span class="pre-w">cuesta</span><span class="pre-w">tu</span><span class="pre-w">playera</span><br /><span class="pre-w acc">personalizada?</span></div>
+      <div id="pre-sub">SAL DE DUDAS EN SEGUNDOS</div>
+    </div>
+  </div>
+  <script>
+    const T = window.__T_PRE || { w: [0.36, 0.62, 0.94, 1.18, 1.42], sub: 2.66, end: 4.5 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#pre-tee", { y: -40 }, { y: 0, duration: 0.5, ease: "back.out(1.4)" }, 0);
+    tl.fromTo("#pre-tag", { rotation: -35, opacity: 0 }, { rotation: 0, opacity: 1, duration: 1.2, ease: "elastic.out(1, 0.4)" }, 0.15);
+    tl.to("#pre-tag", { rotation: 8, duration: 0.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.35);
+    T.w.forEach((t, i) => {
+      tl.fromTo(`.pre-w:nth-of-type(${i + 1})`, { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, t);
+    });
+    tl.fromTo("#pre-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.sub);
+    tl.to("#pre-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["pregunta"] = tl;
+  </script>
+</template>

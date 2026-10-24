@@ -1,0 +1,29 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .gan-card { position: absolute; left: 140px; right: 140px; height: 260px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 130px; font-weight: 900; letter-spacing: -0.03em; }
+    #gan-1 { top: 520px; background: #e3000f; box-shadow: 0 24px 70px rgba(227, 0, 15, 0.45); }
+    #gan-2 { top: 840px; background: #2c275f; border: 6px solid #8f7bff; box-shadow: 0 0 70px rgba(143, 123, 255, 0.55); }
+        #gan-q { position: absolute; left: 0; right: 0; top: 180px; text-align: center; font-size: 96px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+    #gan-sub { position: absolute; left: 0; right: 0; top: 1200px; text-align: center; font-family: "JB", monospace; font-size: 48px; font-weight: 700; letter-spacing: 0.12em; color: #c9c3d8; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+    <div id="gan-scene">
+      <div id="gan-q">¿Cuál elijo?</div>
+      <div class="gan-card" id="gan-1">DTF TEXTIL</div>
+      <div class="gan-card" id="gan-2">DTF UV</div>
+      <div id="gan-sub">TE LO EXPLICO RÁPIDO</div>
+    </div>
+  </div>
+  <script>
+    const T = { c: [0.38, 2.22], sub: 3.4, end: 4.9 };
+    const tl = gsap.timeline({ paused: true });
+    T.c.forEach((t, i) => {
+      tl.fromTo(`#gan-${i + 1}`, { opacity: 0, scale: 1.5, rotation: i % 2 ? 4 : -4 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.28, ease: "expo.out" }, t);
+    });
+    tl.fromTo("#gan-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.sub);
+    tl.to("#gan-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["gancho"] = tl;
+  </script>
+</template>

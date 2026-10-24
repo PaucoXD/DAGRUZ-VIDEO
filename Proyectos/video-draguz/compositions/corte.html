@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #cor-title { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 110px; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+    #cor-title em { font-style: normal; color: #e3000f; }
+    .cor-col { position: absolute; top: 560px; width: 520px; text-align: center; }
+    #cor-reg { left: 20px; }
+    #cor-ovr { left: 540px; }
+    .cor-tee { position: relative; width: 520px; height: 564px; }
+    .cor-tee img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    #cor-reg .cor-tee img { transform: scale(0.86); }
+    .cor-lbl { margin-top: 26px; font-size: 64px; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0; }
+    .cor-tag { display: inline-block; margin-top: 12px; font-family: "JB", monospace; font-size: 30px; font-weight: 700; color: #9797a6; opacity: 0; }
+    #cor-l2 { color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="corte" data-width="1080" data-height="1920">
+    <div id="cor-scene">
+      <div id="cor-title">Elige tu <em>corte</em></div>
+      <div class="cor-col" id="cor-reg">
+        <div class="cor-tee"><img src="assets/img/tee-regular.png" alt="" /></div>
+        <div class="cor-lbl" id="cor-l1">Regular</div>
+        <div class="cor-tag" id="cor-t1">FIT CLÁSICO</div>
+      </div>
+      <div class="cor-col" id="cor-ovr">
+        <div class="cor-tee"><img src="assets/img/tee-oversize.png" alt="" /></div>
+        <div class="cor-lbl" id="cor-l2">Oversize</div>
+        <div class="cor-tag" id="cor-t2">HOLGADO · STREET</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#cor-title", { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 0.05);
+    tl.fromTo("#cor-reg .cor-tee", { opacity: 0, x: -220, rotation: -8 }, { opacity: 1, x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.4)" }, 0.3);
+    tl.fromTo("#cor-ovr .cor-tee", { opacity: 0, x: 220, rotation: 8 }, { opacity: 1, x: 0, rotation: 0, duration: 0.45, ease: "back.out(1.4)" }, 0.4);
+
+    tl.fromTo("#cor-l1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 1.28);
+    tl.fromTo("#cor-t1", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 1.38);
+    tl.fromTo("#cor-reg .cor-tee", { scale: 1 }, { scale: 1.07, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, 1.28);
+    tl.fromTo("#cor-l2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 1.84);
+    tl.fromTo("#cor-t2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 1.94);
+    tl.fromTo("#cor-ovr .cor-tee", { scale: 1 }, { scale: 1.07, duration: 0.15, yoyo: true, repeat: 1, ease: "power2.out" }, 1.84);
+
+    tl.to("#cor-scene", { y: 200, opacity: 0, filter: "blur(12px)", duration: 0.2, ease: "power3.in" }, 2.56);
+    window.__timelines["corte"] = tl;
+  </script>
+</template>
