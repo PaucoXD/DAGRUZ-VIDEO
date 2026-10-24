@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .ds-card { position: absolute; top: 230px; width: 470px; height: 470px; border-radius: 20px; overflow: hidden; background: #ececee center / cover no-repeat; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55); }
+    #ds-a { left: 45px; background-image: url(assets/img/disenos/01-samurai-oversize.jpg); }
+    #ds-b { left: 565px; background-image: url(assets/img/disenos/02-gato-regular.jpg); }
+    .ds-tag { position: absolute; top: 730px; width: 470px; text-align: center; font-family: "JB", monospace; font-size: 36px; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; opacity: 0; }
+    #ds-ta { left: 45px; } #ds-tb { left: 565px; }
+    #ds-t { position: absolute; left: 0; right: 0; top: 860px; text-align: center; font-size: 110px; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; opacity: 0; }
+    .ds-l { position: absolute; left: 0; right: 0; text-align: center; font-size: 68px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; opacity: 0; }
+    .ds-l em { font-style: normal; color: #ff3b47; }
+    #ds-l1 { top: 1020px; } #ds-l2 { top: 1110px; }
+    #ds-q { position: absolute; left: 40px; right: 40px; top: 1300px; text-align: center; font-size: 120px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; color: #e3000f; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="dos" data-width="1080" data-height="1920">
+    <div id="ds-scene">
+      <div class="ds-card" id="ds-a"></div>
+      <div class="ds-card" id="ds-b"></div>
+      <div class="ds-tag" id="ds-ta">OVERSIZE</div>
+      <div class="ds-tag" id="ds-tb">REGULAR</div>
+      <div id="ds-t">Las dos</div>
+      <div class="ds-l" id="ds-l1"><em>100%</em> algodón</div>
+      <div class="ds-l" id="ds-l2">Tu diseño en <em>DTF</em></div>
+      <div id="ds-q">¿Cuál es la tuya?</div>
+    </div>
+  </div>
+  <script>
+    const T = { t: 0.09, l1: 0.65, l2: 2.0, q: 3.4, end: 5.0 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ds-a", { opacity: 0, y: -120, rotation: -6 }, { opacity: 1, y: 0, rotation: -2, duration: 0.4, ease: "back.out(1.4)", immediateRender: true }, 0.0);
+    tl.fromTo("#ds-b", { opacity: 0, y: -120, rotation: 6 }, { opacity: 1, y: 0, rotation: 2, duration: 0.4, ease: "back.out(1.4)", immediateRender: true }, 0.12);
+    tl.fromTo(".ds-tag", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.4);
+    tl.fromTo("#ds-t", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, T.t);
+    tl.fromTo("#ds-l1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.l1);
+    tl.fromTo("#ds-l2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.l2);
+    tl.fromTo(".ds-card", { scale: 1 }, { scale: 1.04, duration: 1.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.5);
+    tl.fromTo("#ds-q", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.8)" }, T.q);
+    tl.to("#ds-scene", { opacity: 0, scale: 1.1, filter: "blur(12px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["dos"] = tl;
+  </script>
+</template>
