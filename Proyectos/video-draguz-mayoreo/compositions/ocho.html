@@ -1,0 +1,40 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #oc-grid { position: absolute; left: 60px; top: 220px; width: 960px; display: grid; grid-template-columns: repeat(4, 240px); grid-auto-rows: 260px; }
+    .oc-t { position: relative; width: 240px; height: 260px; opacity: 0; }
+    .oc-t .oc-i { position: absolute; inset: 0; background: url(assets/img/tee-regular.png) center / contain no-repeat; filter: drop-shadow(0 0 14px rgba(160, 120, 255, 0.5)); }
+    .oc-t svg { position: absolute; left: 100px; top: 70px; width: 40px; height: 50px; }
+    #oc-a { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-family: "JB", monospace; font-size: 44px; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; opacity: 0; }
+    #oc-n { position: absolute; left: 0; right: 0; top: 880px; text-align: center; font-size: 300px; font-weight: 900; line-height: 1; letter-spacing: -0.05em; }
+    #oc-p { position: absolute; left: 0; right: 0; top: 1180px; text-align: center; font-size: 90px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; opacity: 0; }
+    #oc-m { position: absolute; left: 110px; right: 110px; top: 1360px; height: 150px; border-radius: 14px; background: #e3000f; display: flex; align-items: center; justify-content: center; font-size: 64px; font-weight: 900; text-transform: uppercase; box-shadow: 0 20px 60px rgba(227, 0, 15, 0.45); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="ocho" data-width="1080" data-height="1920">
+    <div id="oc-scene">
+      <div id="oc-grid"><div class="oc-t" id="oc-t1"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t2"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t3"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t4"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t5"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t6"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t7"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div><div class="oc-t" id="oc-t8"><div class="oc-i"></div><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div></div>
+      <div id="oc-a">A PARTIR DE</div>
+      <div id="oc-n">1</div>
+      <div id="oc-p">Playeras</div>
+      <div id="oc-m">Precio de mayoreo</div>
+    </div>
+  </div>
+  <script>
+    const T = { a: 0.0, t0: 0.1, step: 0.07, p: 0.75, m: 1.75, end: 3.1 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#oc-a", { opacity: 0 }, { opacity: 1, duration: 0.2 }, T.a);
+    for (let i = 0; i < 8; i++) {
+      const t = T.t0 + i * T.step;
+      tl.fromTo("#oc-t" + (i + 1), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, t);
+    }
+    const cnt = { n: 1 };
+    const nEl = document.querySelector("#oc-n");
+    tl.fromTo(cnt, { n: 1 }, { n: 8, duration: 7 * T.step + 0.05, ease: "none", onUpdate: () => { nEl.textContent = String(Math.round(cnt.n)); } }, T.t0);
+    tl.fromTo("#oc-n", { scale: 1 }, { scale: 1.15, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, T.t0 + 7 * T.step);
+    tl.fromTo("#oc-p", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.p);
+    tl.fromTo("#oc-m", { opacity: 0, scale: 1.6, rotation: -6 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.3, ease: "back.out(2)" }, T.m);
+    tl.to("#oc-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["ocho"] = tl;
+  </script>
+</template>
