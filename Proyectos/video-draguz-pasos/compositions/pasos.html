@@ -1,0 +1,70 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #ps-dots { position: absolute; left: 0; right: 0; top: 140px; display: flex; justify-content: center; gap: 40px; }
+    .ps-d { width: 110px; height: 110px; border-radius: 50%; border: 5px solid #4a4560; background: #14121c; display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 900; color: #8a84a0; }
+    #ps-line { position: absolute; left: 240px; right: 240px; top: 193px; height: 6px; background: #4a4560; }
+    .ps-c { position: absolute; inset: 0; opacity: 0; }
+    .ps-n { position: absolute; left: 70px; top: 360px; font-family: "JB", monospace; font-size: 60px; font-weight: 700; color: #ff3b47; }
+    .ps-icw { position: absolute; left: 290px; top: 360px; width: 500px; height: 500px; }
+    .ps-ic { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .ps-big { display: flex; align-items: center; justify-content: center; font-size: 230px; font-weight: 900; color: #ffd60a; letter-spacing: -0.05em; }
+    #ps-cal { opacity: 0; }
+    .ps-t { position: absolute; left: 40px; right: 40px; top: 960px; text-align: center; font-size: 100px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .ps-s { position: absolute; left: 40px; right: 40px; top: 1200px; text-align: center; font-family: "JB", monospace; font-size: 46px; font-weight: 700; letter-spacing: 0.08em; color: #c9c3d8; opacity: 0; }
+    #ps-fin { position: absolute; left: 0; right: 0; top: 700px; text-align: center; font-size: 150px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; opacity: 0; }
+    #ps-fin em { font-style: normal; color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="pasos" data-width="1080" data-height="1920">
+    <div id="ps-scene">
+      <div id="ps-line"></div>
+      <div id="ps-dots"><div class="ps-d" id="ps-d1">1</div><div class="ps-d" id="ps-d2">2</div><div class="ps-d" id="ps-d3">3</div><div class="ps-d" id="ps-d4">4</div></div>
+      <div class="ps-c" id="ps-1">
+        <div class="ps-n">1</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><rect x="80" y="20" width="140" height="260" rx="24" fill="#14121c" stroke="#ffffff" stroke-width="10" /><path d="M115 110 L135 95 H165 L185 110 L200 130 L185 140 V200 H115 V140 L100 130 Z" fill="#e3000f" /><rect x="105" y="220" width="90" height="26" rx="13" fill="#e3000f" /></svg></div>
+        <div class="ps-t">Cotiza en línea</div>
+        <div class="ps-s" id="ps-s1">Y ELIGE TU PRENDA</div>
+      </div>
+      <div class="ps-c" id="ps-2">
+        <div class="ps-n">2</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M150 30 a120 120 0 1 1 -62 222 L40 268 L56 222 A120 120 0 0 1 150 30 Z" fill="#25d366" /><path d="M95 150 L132 187 L208 112" fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="ps-t">Confirma por WhatsApp</div>
+        <div class="ps-s" id="ps-s2">TU PEDIDO, DIRECTO</div>
+      </div>
+      <div class="ps-c" id="ps-3">
+        <div class="ps-n">3</div>
+        <div class="ps-icw"><div class="ps-ic ps-big" id="ps-50">50%</div><svg class="ps-ic" id="ps-cal" viewBox="0 0 300 300"><rect x="40" y="60" width="220" height="200" rx="20" fill="#14121c" stroke="#ffffff" stroke-width="10" /><rect x="40" y="60" width="220" height="56" rx="20" fill="#e3000f" /><rect x="85" y="35" width="16" height="50" rx="8" fill="#ffffff" /><rect x="199" y="35" width="16" height="50" rx="8" fill="#ffffff" /><text x="150" y="215" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="78" fill="#ffffff">2-3</text></svg></div>
+        <div class="ps-t">50% de anticipo</div>
+        <div class="ps-s" id="ps-s3">PRODUCCIÓN EN 2 A 3 DÍAS</div>
+      </div>
+      <div class="ps-c" id="ps-4">
+        <div class="ps-n">4</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M40 150 L150 60 L260 150 V260 H40 Z" fill="#14121c" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /><rect x="125" y="190" width="50" height="70" fill="#e3000f" /><path d="M235 20 a35 35 0 0 1 35 35 c0 30 -35 65 -35 65 s-35 -35 -35 -65 a35 35 0 0 1 35 -35 Z" fill="#e3000f" stroke="#ffffff" stroke-width="6" /><circle cx="235" cy="55" r="12" fill="#ffffff" /></svg></div>
+        <div class="ps-t">Te la entregamos</div>
+        <div class="ps-s" id="ps-s4">A DOMICILIO O EN PUNTO MEDIO</div>
+      </div>
+      <div id="ps-fin">Así de<br /><em>fácil</em></div>
+    </div>
+  </div>
+  <script>
+    const T = { c: [0.06, 2.86, 5.53, 10.42], s: [1.58, 3.9, 8.6, 11.74], cal: 9.14, fin: 13.71, end: 14.8 };
+    const tl = gsap.timeline({ paused: true });
+    T.c.forEach((t, i) => {
+      const n = i + 1;
+      tl.fromTo(`#ps-${n}`, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, t);
+      tl.fromTo(`#ps-${n} .ps-icw`, { scale: 0.6 }, { scale: 1, duration: 0.4, ease: "back.out(1.7)" }, t + 0.05);
+      tl.to(`#ps-d${n}`, { backgroundColor: "#e3000f", borderColor: "#ffffff", color: "#ffffff", scale: 1.12, duration: 0.2 }, t);
+      if (i > 0) tl.to(`#ps-d${i}`, { scale: 1, duration: 0.2 }, t);
+      tl.fromTo(`#ps-s${n}`, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.s[i]);
+      const out = i < 3 ? T.c[i + 1] - 0.1 : T.fin - 0.15;
+      tl.to(`#ps-${n}`, { opacity: 0, x: -200, duration: 0.18, ease: "power2.in" }, out);
+    });
+    tl.to("#ps-50", { opacity: 0, scale: 0.6, duration: 0.2 }, T.cal - 0.1);
+    tl.fromTo("#ps-cal", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, T.cal);
+    tl.to("#ps-d4", { scale: 1, duration: 0.2 }, T.fin);
+    tl.fromTo("#ps-fin", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, T.fin);
+    tl.to("#ps-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["pasos"] = tl;
+  </script>
+</template>
