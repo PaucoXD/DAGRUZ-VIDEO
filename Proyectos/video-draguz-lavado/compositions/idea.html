@@ -1,0 +1,28 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #id-tee { position: absolute; left: 240px; top: 200px; width: 600px; height: 650px; }
+    #id-tee img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 30px rgba(160, 120, 255, 0.6)); }
+    #id-tee svg { position: absolute; left: 230px; top: 170px; width: 140px; height: 175px; }
+    #id-q { position: absolute; left: 40px; right: 40px; top: 920px; text-align: center; font-size: 96px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    #id-q em { font-style: normal; color: #ff3b47; }
+    #id-s { position: absolute; left: 290px; right: 290px; top: 1300px; height: 120px; border-radius: 14px; background: #e3000f; display: flex; align-items: center; justify-content: center; font-size: 64px; font-weight: 900; text-transform: uppercase; box-shadow: 0 20px 60px rgba(227, 0, 15, 0.45); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="idea" data-width="1080" data-height="1920">
+    <div id="id-scene">
+      <div id="id-tee"><img src="assets/img/tee-regular.png" alt="" /><svg viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div>
+      <div id="id-q">¿Quieres que tu estampado <em>dure más?</em></div>
+      <div id="id-s">4 tips</div>
+    </div>
+  </div>
+  <script>
+    const T = { s: 2.9, end: 3.9 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#id-tee", { scale: 0.9, rotation: -4 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(1.6)", immediateRender: true }, 0.0);
+    tl.fromTo("#id-tee", { y: 0 }, { y: -12, duration: 1.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.4);
+    tl.fromTo("#id-s", { opacity: 0, scale: 1.6, rotation: -6 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.3, ease: "back.out(2)" }, T.s);
+    tl.to("#id-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["idea"] = tl;
+  </script>
+</template>

@@ -1,0 +1,68 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #ps-dots { position: absolute; left: 0; right: 0; top: 140px; display: flex; justify-content: center; gap: 40px; }
+    .ps-d { width: 110px; height: 110px; border-radius: 50%; border: 5px solid #4a4560; background: #14121c; display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 900; color: #8a84a0; }
+    #ps-line { position: absolute; left: 240px; right: 240px; top: 193px; height: 6px; background: #4a4560; }
+    .ps-c { position: absolute; inset: 0; opacity: 0; }
+    .ps-n { position: absolute; left: 70px; top: 360px; font-family: "JB", monospace; font-size: 60px; font-weight: 700; color: #ff3b47; }
+    .ps-icw { position: absolute; left: 290px; top: 360px; width: 500px; height: 500px; }
+    .ps-ic { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .ps-big { display: flex; align-items: center; justify-content: center; font-size: 230px; font-weight: 900; color: #ffd60a; letter-spacing: -0.05em; }
+    #ps-cal { opacity: 0; }
+    .ps-t { position: absolute; left: 40px; right: 40px; top: 960px; text-align: center; font-size: 100px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .ps-s { position: absolute; left: 40px; right: 40px; top: 1200px; text-align: center; font-family: "JB", monospace; font-size: 46px; font-weight: 700; letter-spacing: 0.08em; color: #c9c3d8; opacity: 0; }
+    #ps-fin { position: absolute; left: 0; right: 0; top: 700px; text-align: center; font-size: 150px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; opacity: 0; }
+    #ps-fin em { font-style: normal; color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="pasos" data-width="1080" data-height="1920">
+    <div id="ps-scene">
+      <div id="ps-line"></div>
+      <div id="ps-dots"><div class="ps-d" id="ps-d1">1</div><div class="ps-d" id="ps-d2">2</div><div class="ps-d" id="ps-d3">3</div><div class="ps-d" id="ps-d4">4</div></div>
+      <div class="ps-c" id="ps-1">
+        <div class="ps-n">1</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M95 60 L125 45 H175 L205 60 L255 100 L230 140 L210 128 V260 H90 V128 L70 140 L45 100 Z" fill="#14121c" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /><path d="M120 190 a35 35 0 1 1 60 -10" fill="none" stroke="#e3000f" stroke-width="14" stroke-linecap="round" /><path d="M165 165 L185 185 L195 160" fill="none" stroke="#e3000f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="ps-t">Lávala al revés</div>
+        <div class="ps-s" id="ps-s1">PROTEGE EL ESTAMPADO</div>
+      </div>
+      <div class="ps-c" id="ps-2">
+        <div class="ps-n">2</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M150 25 C150 25 60 130 60 185 a90 90 0 0 0 180 0 C240 130 150 25 150 25 Z" fill="#2f7bff" stroke="#ffffff" stroke-width="10" /><path d="M150 140 V250 M105 165 L195 225 M195 165 L105 225" stroke="#ffffff" stroke-width="12" stroke-linecap="round" /></svg></div>
+        <div class="ps-t">Agua fría</div>
+        <div class="ps-s" id="ps-s2">Y SIN CLORO</div>
+      </div>
+      <div class="ps-c" id="ps-3">
+        <div class="ps-n">3</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><rect x="50" y="40" width="200" height="230" rx="20" fill="#14121c" stroke="#ffffff" stroke-width="10" /><circle cx="150" cy="165" r="65" fill="none" stroke="#ffffff" stroke-width="10" /><circle cx="90" cy="75" r="9" fill="#ffffff" /><path d="M30 30 L270 280" stroke="#e3000f" stroke-width="22" stroke-linecap="round" /></svg></div>
+        <div class="ps-t">Sin secadora</div>
+        <div class="ps-s" id="ps-s3">SÉCALA A LA SOMBRA</div>
+      </div>
+      <div class="ps-c" id="ps-4">
+        <div class="ps-n">4</div>
+        <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M40 210 C60 120 120 100 200 100 H250 V210 Z" fill="#14121c" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /><path d="M120 100 C120 70 140 60 170 60 H240" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" /><path d="M30 30 L270 280" stroke="#e3000f" stroke-width="22" stroke-linecap="round" /></svg></div>
+        <div class="ps-t">Plancha con cuidado</div>
+        <div class="ps-s" id="ps-s4">NUNCA SOBRE EL ESTAMPADO</div>
+      </div>
+      <div id="ps-fin">Como<br /><em>nueva</em></div>
+    </div>
+  </div>
+  <script>
+    const T = { c: [0.2, 2.44, 4.96, 8.56], s: [1.4, 3.4, 6.2, 9.4], fin: 12.0, end: 15.4 };
+    const tl = gsap.timeline({ paused: true });
+    T.c.forEach((t, i) => {
+      const n = i + 1;
+      tl.fromTo(`#ps-${n}`, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, t);
+      tl.fromTo(`#ps-${n} .ps-icw`, { scale: 0.6 }, { scale: 1, duration: 0.4, ease: "back.out(1.7)" }, t + 0.05);
+      tl.to(`#ps-d${n}`, { backgroundColor: "#e3000f", borderColor: "#ffffff", color: "#ffffff", scale: 1.12, duration: 0.2 }, t);
+      if (i > 0) tl.to(`#ps-d${i}`, { scale: 1, duration: 0.2 }, t);
+      tl.fromTo(`#ps-s${n}`, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, T.s[i]);
+      const out = i < 3 ? T.c[i + 1] - 0.1 : T.fin - 0.15;
+      tl.to(`#ps-${n}`, { opacity: 0, x: -200, duration: 0.18, ease: "power2.in" }, out);
+    });
+    tl.to("#ps-d4", { scale: 1, duration: 0.2 }, T.fin);
+    tl.fromTo("#ps-fin", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, T.fin);
+    tl.to("#ps-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
+    window.__timelines["pasos"] = tl;
+  </script>
+</template>
