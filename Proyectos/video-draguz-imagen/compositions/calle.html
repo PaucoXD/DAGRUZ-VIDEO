@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    #calle-ph { left: 60px; right: 60px; top: 110px; height: 1180px; transform: rotate(1.5deg); }
+    #calle-ph .im { background-image: url(assets/img/heroe/pose-brazos-cruzados.jpg); background-position: center 12%; }
+    .calle-h { position: absolute; left: 56px; font-size: 128px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 1; white-space: nowrap; }
+    #calle-h1 { top: 1330px; } #calle-h2 { top: 1480px; color: #e3000f; }
+    #calle-t { right: 60px; top: 1690px; width: 520px; height: 86px; font-size: 40px; transform: rotate(-2deg); background: #0d0d0f; }
+  </style>
+  <div id="root" data-composition-id="calle" data-width="1080" data-height="1920">
+    <div class="pg" id="calle-pg">
+      <div class="meta" style="left:56px;top:28px">PODERES</div>
+      <div class="meta" style="right:56px;top:28px">P. 04</div>
+      <div class="ph" id="calle-ph"><div class="im"></div></div>
+      <div class="calle-h" id="calle-h1"><span class="m"><span class="mi">Estilo</span></span></div>
+      <div class="calle-h" id="calle-h2"><span class="m"><span class="mi">de calle</span></span></div>
+      <div class="tape" id="calle-t">PODER 02 · ACTITUD</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#calle-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { h: [0.3, 0.5], t: 0.9 };
+    tl.fromTo("#calle-ph .im", { x: 0, scale: 1.2, filter: "blur(10px)" }, { x: 0, scale: 1.05, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.15);
+    tl.to("#calle-ph .im", { scale: 1.12, duration: 2, ease: "none" }, 0.65);
+    T.h.forEach((t, i) => tl.fromTo(`#calle-h${i + 1} .mi`, { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "expo.out" }, t));
+    tl.fromTo("#calle-t", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, T.t);
+    window.__timelines["calle"] = tl;
+  </script>
+</template>

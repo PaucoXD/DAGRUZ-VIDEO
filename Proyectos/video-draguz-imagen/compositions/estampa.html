@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    #estampa-ph { left: 60px; right: 60px; top: 110px; height: 1180px; transform: rotate(-1.5deg); }
+    #estampa-ph .im { background-image: url(assets/img/heroe/pose-pulgar-playera.jpg); background-position: center 20%; }
+    .estampa-h { position: absolute; left: 56px; font-size: 128px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 1; white-space: nowrap; }
+    #estampa-h1 { top: 1330px; } #estampa-h2 { top: 1480px; color: #e3000f; }
+    #estampa-t { right: 60px; top: 1690px; width: 560px; height: 86px; font-size: 40px; transform: rotate(-2deg); background: #0d0d0f; }
+  </style>
+  <div id="root" data-composition-id="estampa" data-width="1080" data-height="1920">
+    <div class="pg" id="estampa-pg">
+      <div class="meta" style="left:56px;top:28px">PODERES</div>
+      <div class="meta" style="right:56px;top:28px">P. 05</div>
+      <div class="ph" id="estampa-ph"><div class="im"></div></div>
+      <div class="estampa-h" id="estampa-h1"><span class="m"><span class="mi">Listo para</span></span></div>
+      <div class="estampa-h" id="estampa-h2"><span class="m"><span class="mi">estampar</span></span></div>
+      <div class="tape" id="estampa-t">PODER 03 · TUS IDEAS</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#estampa-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { h: [0.3, 0.5], t: 0.9 };
+    tl.fromTo("#estampa-ph .im", { x: 500, scale: 1.2, filter: "blur(10px)" }, { x: 0, scale: 1.05, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.15);
+    tl.to("#estampa-ph .im", { scale: 1.12, duration: 2, ease: "none" }, 0.65);
+    T.h.forEach((t, i) => tl.fromTo(`#estampa-h${i + 1} .mi`, { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "expo.out" }, t));
+    tl.fromTo("#estampa-t", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, T.t);
+    window.__timelines["estampa"] = tl;
+  </script>
+</template>

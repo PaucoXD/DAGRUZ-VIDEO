@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    #we-ph { left: 520px; right: 50px; top: 140px; height: 1060px; transform: rotate(2deg); }
+    #we-ph .im { background-image: url(assets/img/heroe/pose-senalando.jpg); background-position: 30% 8%; background-size: 170%; }
+    .we-h { position: absolute; left: 56px; width: 470px; font-size: 104px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 0.95; }
+    #we-h1 { top: 300px; } #we-h2 { top: 640px; color: #e3000f; }
+    #we-bar { position: absolute; left: 0; right: 0; top: 1330px; height: 230px; background: #0d0d0f; display: flex; align-items: center; justify-content: center; }
+    #we-url { font-size: 118px; font-weight: 900; letter-spacing: -0.05em; color: #ffffff; }
+    #we-url b { color: #e3000f; }
+    #we-n { left: 300px; top: 1600px; width: 480px; height: 86px; font-size: 40px; transform: rotate(-2deg); }
+  </style>
+  <div id="root" data-composition-id="web" data-width="1080" data-height="1920">
+    <div class="pg" id="web-pg">
+      <div class="meta" style="left:56px;top:28px">NUEVA PÁGINA</div>
+      <div class="meta" style="right:56px;top:28px">P. 06</div>
+      <div class="ph" id="we-ph"><div class="im"></div></div>
+      <div class="we-h" id="we-h1"><span class="m"><span class="mi">Nueva</span></span><br /><span class="m"><span class="mi">imagen</span></span></div>
+      <div class="we-h" id="we-h2"><span class="m"><span class="mi">Nueva</span></span><br /><span class="m"><span class="mi">página</span></span></div>
+      <div id="we-bar"><div id="we-url"><span class="m"><span class="mi">draguzshop<b>.com</b></span></span></div></div>
+      <div class="tape" id="we-n">ENTRA Y COTIZA</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#web-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { h1: 0.3, h2: 0.95, url: 2.25, n: 2.8 };
+    tl.fromTo("#we-ph", { x: 600, rotation: 12 }, { x: 0, rotation: 2, duration: 0.5, ease: "back.out(1.4)" }, 0.15);
+    tl.fromTo("#we-h1 .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.35, stagger: 0.08, ease: "expo.out" }, T.h1);
+    tl.fromTo("#we-h2 .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.35, stagger: 0.08, ease: "expo.out" }, T.h2);
+    tl.fromTo("#we-bar", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.35, ease: "power3.out" }, T.url - 0.15);
+    tl.fromTo("#we-url .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, T.url);
+    tl.fromTo("#we-n", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, T.n);
+    window.__timelines["web"] = tl;
+  </script>
+</template>
