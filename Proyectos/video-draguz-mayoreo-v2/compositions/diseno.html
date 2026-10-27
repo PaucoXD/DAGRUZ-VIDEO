@@ -1,0 +1,48 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #dn-tee { position: absolute; left: 190px; top: 200px; width: 700px; height: 760px; }
+    #dn-tee img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 30px rgba(160, 120, 255, 0.6)); }
+    #dn-ovr { opacity: 0; }
+    #dn-box { position: absolute; left: 255px; top: 230px; width: 190px; height: 190px; border: 6px dashed #ffffff; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: "JB", monospace; font-size: 38px; font-weight: 700; line-height: 1.1; opacity: 0; }
+    #dn-bolt { position: absolute; left: 270px; top: 215px; width: 160px; height: 200px; opacity: 0; }
+    #dn-t { position: absolute; left: 40px; right: 40px; top: 1000px; text-align: center; font-size: 100px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; opacity: 0; }
+    #dn-t em { font-style: normal; color: #ff3b47; }
+    .dn-chip { position: absolute; left: 50%; height: 92px; padding: 0 40px; border-radius: 46px; background: rgba(9, 9, 12, 0.72); border: 3px solid rgba(255, 255, 255, 0.85); font-family: "JB", monospace; font-size: 44px; font-weight: 700; letter-spacing: 0.06em; display: flex; align-items: center; white-space: nowrap; opacity: 0; transform: translateX(-50%); }
+    #dn-c1 { top: 1250px; } #dn-c2 { top: 1370px; } #dn-c3 { top: 1490px; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em; }
+    .mi { display: inline-block; }
+  </style>
+  <div id="root" data-composition-id="diseno" data-width="1080" data-height="1920">
+    <div id="dn-scene">
+      <div id="dn-tee">
+        <img id="dn-reg" src="assets/img/tee-regular.png" alt="" />
+        <img id="dn-ovr" src="assets/img/tee-oversize.png" alt="" />
+        <div id="dn-box">TU<br />LOGO</div>
+        <svg id="dn-bolt" viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg>
+      </div>
+      <div id="dn-t"><span class="m"><span class="mi">Tu</span></span> <span class="m"><span class="mi">logo</span></span> <span class="m"><span class="mi">o</span></span> <em><span class="m"><span class="mi">tu</span></span> <span class="m"><span class="mi">diseño</span></span></em></div>
+      <div class="dn-chip" id="dn-c1">IMPRESO EN DTF</div>
+      <div class="dn-chip" id="dn-c2">100% ALGODÓN</div>
+      <div class="dn-chip" id="dn-c3">REGULAR U OVERSIZE</div>
+    </div>
+  </div>
+  <script>
+    const T = { box: 0.05, bolt: 0.68, c: [1.84, 2.76, 4.12], ovr: 4.84, end: 5.6 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dn-tee", { opacity: 0, scale: 1.4, rotationY: 90 }, { opacity: 1, scale: 1, rotationY: 0, duration: 0.5, ease: "expo.out", immediateRender: true }, 0.0);
+    tl.set("#dn-t", { opacity: 1 }, 0.1);
+    tl.fromTo("#dn-t .mi", { yPercent: 110 }, { yPercent: 0, duration: 0.45, stagger: 0.06, ease: "expo.out" }, 0.1);
+    tl.fromTo("#dn-box", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, T.box + 0.2);
+    tl.to("#dn-box", { opacity: 0, scale: 1.3, duration: 0.2, ease: "power2.in" }, T.bolt);
+    tl.fromTo("#dn-bolt", { opacity: 0, scale: 1.8, rotation: -10 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }, T.bolt + 0.05);
+    T.c.forEach((t, i) => {
+      tl.fromTo("#dn-c" + (i + 1), { opacity: 0, y: 30, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, xPercent: -50, x: 0, duration: 0.3, ease: "back.out(1.8)" }, t);
+    });
+    tl.to("#dn-reg", { opacity: 0, duration: 0.25 }, T.ovr);
+    tl.to("#dn-ovr", { opacity: 1, duration: 0.25 }, T.ovr);
+    tl.to("#dn-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["diseno"] = tl;
+  </script>
+</template>

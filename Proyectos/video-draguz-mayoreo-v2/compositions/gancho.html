@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    #gc-q { position: absolute; left: 40px; right: 40px; top: 330px; text-align: center; font-size: 74px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+    .gc-r { position: absolute; left: 130px; right: 130px; height: 250px; display: flex; align-items: center; gap: 50px; opacity: 0; }
+    #gc-r1 { top: 560px; } #gc-r2 { top: 840px; } #gc-r3 { top: 1120px; }
+    .gc-r svg { width: 220px; height: 220px; flex: none; }
+    .gc-r .mi { font-size: 120px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+    #gc-r2 .mi { color: #ff3b47; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em; }
+    .mi { display: inline-block; }
+  </style>
+  <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+    <div id="gc-scene">
+      <div id="gc-q">¿Playeras para tu…</div>
+      <div class="gc-r" id="gc-r1"><svg viewBox="0 0 300 300"><path d="M95 40 L125 25 H175 L205 40 L265 85 L235 135 L210 120 V275 H90 V120 L65 135 L35 85 Z" fill="#14121c" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /><text x="150" y="225" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="100" fill="#e3000f">10</text></svg><span class="m"><span class="mi">Equipo</span></span></div>
+      <div class="gc-r" id="gc-r2"><svg viewBox="0 0 300 300"><path d="M150 25 L183 110 H275 L200 165 L228 255 L150 200 L72 255 L100 165 L25 110 H117 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg><span class="m"><span class="mi">Evento</span></span></div>
+      <div class="gc-r" id="gc-r3"><svg viewBox="0 0 300 300"><rect x="45" y="120" width="210" height="150" fill="#14121c" stroke="#ffffff" stroke-width="10" /><path d="M30 120 L60 40 H240 L270 120 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /><rect x="125" y="185" width="50" height="85" fill="#ffffff" /></svg><span class="m"><span class="mi">Negocio</span></span></div>
+    </div>
+  </div>
+  <script>
+    const T = { r: [0.9, 1.75, 2.4], end: 3.4 };
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#gc-q", { scale: 0.9 }, { scale: 1, duration: 0.3, ease: "back.out(1.6)", immediateRender: true }, 0.0);
+    T.r.forEach((t, i) => {
+      tl.set("#gc-r" + (i + 1), { opacity: 1 }, t);
+      tl.fromTo(`#gc-r${i + 1} svg`, { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, t);
+      tl.fromTo(`#gc-r${i + 1} .mi`, { yPercent: 110, skewY: 8 }, { yPercent: 0, skewY: 0, duration: 0.4, ease: "expo.out" }, t + 0.06);
+    });
+    tl.to("#gc-scene", { x: -1080, duration: 0.22, ease: "power3.in" }, T.end - 0.22);
+    window.__timelines["gancho"] = tl;
+  </script>
+</template>
