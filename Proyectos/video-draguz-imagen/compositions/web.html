@@ -13,20 +13,24 @@
     .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
     .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
     .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
-    #we-ph { left: 520px; right: 50px; top: 140px; height: 1060px; transform: rotate(2deg); }
-    #we-ph .im { background-image: url(assets/img/heroe/pose-senalando.jpg); background-position: 30% 8%; background-size: 170%; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .sl { position: absolute; height: 10px; border-radius: 6px; background: linear-gradient(90deg, rgba(227, 0, 15, 0), #e3000f 60%, #ffffff); }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; stroke-linejoin: miter; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #we-man { left: 500px; top: 170px; width: 560px; height: 1480px; background-image: url(assets/img/heroe/pose-senalando.png); background-position: center top; -webkit-mask-image: linear-gradient(180deg, #000 52%, transparent 62%); mask-image: linear-gradient(180deg, #000 52%, transparent 62%); }
     .we-h { position: absolute; left: 56px; width: 470px; font-size: 104px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 0.95; }
     #we-h1 { top: 300px; } #we-h2 { top: 640px; color: #e3000f; }
-    #we-bar { position: absolute; left: 0; right: 0; top: 1330px; height: 230px; background: #0d0d0f; display: flex; align-items: center; justify-content: center; }
+    #we-bar { position: absolute; z-index: 2; left: 0; right: 0; top: 1330px; height: 230px; background: #0d0d0f; display: flex; align-items: center; justify-content: center; }
     #we-url { font-size: 118px; font-weight: 900; letter-spacing: -0.05em; color: #ffffff; }
     #we-url b { color: #e3000f; }
-    #we-n { left: 300px; top: 1600px; width: 480px; height: 86px; font-size: 40px; transform: rotate(-2deg); }
+    #we-n { z-index: 3; left: 300px; top: 1600px; width: 480px; height: 86px; font-size: 40px; transform: rotate(-2deg); }
   </style>
   <div id="root" data-composition-id="web" data-width="1080" data-height="1920">
     <div class="pg" id="web-pg">
       <div class="meta" style="left:56px;top:28px">NUEVA PÁGINA</div>
       <div class="meta" style="right:56px;top:28px">P. 06</div>
-      <div class="ph" id="we-ph"><div class="im"></div></div>
+      <div class="cut glow" id="we-man"></div>
       <div class="we-h" id="we-h1"><span class="m"><span class="mi">Nueva</span></span><br /><span class="m"><span class="mi">imagen</span></span></div>
       <div class="we-h" id="we-h2"><span class="m"><span class="mi">Nueva</span></span><br /><span class="m"><span class="mi">página</span></span></div>
       <div id="we-bar"><div id="we-url"><span class="m"><span class="mi">draguzshop<b>.com</b></span></span></div></div>
@@ -37,7 +41,8 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#web-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
     const T = { h1: 0.3, h2: 0.95, url: 2.25, n: 2.8 };
-    tl.fromTo("#we-ph", { x: 600, rotation: 12 }, { x: 0, rotation: 2, duration: 0.5, ease: "back.out(1.4)" }, 0.15);
+    tl.fromTo("#we-man", { x: 700, filter: "blur(10px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.15);
+    tl.to("#we-man", { x: -16, duration: 0.25, repeat: 3, yoyo: true, ease: "sine.inOut" }, 2.25);
     tl.fromTo("#we-h1 .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.35, stagger: 0.08, ease: "expo.out" }, T.h1);
     tl.fromTo("#we-h2 .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.35, stagger: 0.08, ease: "expo.out" }, T.h2);
     tl.fromTo("#we-bar", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.35, ease: "power3.out" }, T.url - 0.15);
