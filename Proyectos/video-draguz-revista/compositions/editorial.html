@@ -1,0 +1,57 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    #ed-h { position: absolute; left: 56px; right: 56px; top: 110px; font-size: 140px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.92; }
+    #ed-h em { font-style: normal; color: #e3000f; }
+    #ed-tee { position: absolute; left: 160px; top: 520px; width: 760px; height: 820px; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    #ed-ovr { position: absolute; inset: 0; background: url(assets/img/tee-oversize.png) center / contain no-repeat; opacity: 0; }
+    #ed-bolt { position: absolute; left: 310px; top: 200px; width: 140px; height: 175px; opacity: 0; }
+    #ed-dots { right: 0; top: 560px; width: 380px; height: 700px; }
+    .ed-c { position: absolute; display: flex; align-items: center; gap: 0; opacity: 0; }
+    .ed-c .ln { height: 4px; background: #0d0d0f; }
+    .ed-c .tx { font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; background: #0d0d0f; color: #ffffff; padding: 14px 22px; }
+    #ed-c1 { left: 40px; top: 700px; } #ed-c2 { right: 40px; top: 1010px; flex-direction: row-reverse; } #ed-c3 { left: 40px; top: 1300px; }
+    #ed-c1 .ln, #ed-c3 .ln { width: 120px; } #ed-c2 .ln { width: 120px; }
+    #ed-c3 .tx { background: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="editorial" data-width="1080" data-height="1920">
+    <div class="pg" id="editorial-pg">
+      <div class="meta" style="left:56px;top:28px">EDITORIAL</div>
+      <div class="meta" style="right:56px;top:28px">P. 03</div>
+      <div id="ed-h"><span class="m"><span class="mi">Tu logo</span></span><br /><span class="m"><span class="mi">o <em>tu diseño</em></span></span></div>
+      <div class="dots" id="ed-dots"></div>
+      <div class="stk" id="ed-tee"><div id="ed-ovr"></div><svg id="ed-bolt" viewBox="0 0 320 400"><path d="M190 40 L105 190 H165 L140 330 L240 150 H178 Z" fill="#e3000f" stroke="#ffffff" stroke-width="10" stroke-linejoin="round" /></svg></div>
+      <div class="ed-c" id="ed-c1"><div class="tx">IMPRESO EN DTF</div><div class="ln"></div></div>
+      <div class="ed-c" id="ed-c2"><div class="tx">100% ALGODÓN</div><div class="ln"></div></div>
+      <div class="ed-c" id="ed-c3"><div class="tx">REGULAR / OVERSIZE</div><div class="ln"></div></div>
+      <div class="rule" style="left:56px;right:56px;top:1760px"></div>
+      <div class="meta" style="left:56px;top:1790px">TU MARCA, TU EQUIPO, TU EVENTO.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#editorial-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { h: [0.15, 0.6], bolt: 0.7, c: [1.84, 2.76, 4.12], ovr: 4.6 };
+    T.h.forEach((t, i) => tl.fromTo(`#ed-h .m:nth-of-type(${i + 1}) .mi`, { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, t));
+    tl.fromTo("#ed-tee", { rotation: 10, scale: 0.8, opacity: 0 }, { rotation: -3, scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" }, 0.2);
+    tl.fromTo("#ed-bolt", { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.in" }, T.bolt);
+    T.c.forEach((t, i) => {
+      tl.set(`#ed-c${i + 1}`, { opacity: 1 }, t);
+      tl.fromTo(`#ed-c${i + 1} .tx`, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, t);
+      tl.fromTo(`#ed-c${i + 1} .ln`, { scaleX: 0, transformOrigin: i === 1 ? "100% 50%" : "0% 50%" }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, t + 0.15);
+    });
+    tl.to("#ed-ovr", { opacity: 1, duration: 0.2 }, T.ovr);
+    tl.to("#ed-tee", { rotation: 3, duration: 2.5, ease: "sine.inOut" }, 1.0);
+    window.__timelines["editorial"] = tl;
+  </script>
+</template>

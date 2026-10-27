@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .oc-t { position: absolute; width: 230px; height: 250px; background: url(assets/img/tee-regular.png) center / contain no-repeat; opacity: 0; }
+    #oc-big { position: absolute; left: 0; right: 0; top: 260px; text-align: center; font-size: 1150px; font-weight: 900; line-height: 0.9; letter-spacing: -0.08em; }
+    #oc-ap { left: 200px; top: 300px; width: 520px; height: 90px; font-size: 44px; transform: rotate(-4deg); }
+    #oc-pl { position: absolute; left: 0; right: 0; top: 1310px; text-align: center; font-size: 130px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; }
+    #oc-may { left: 120px; right: 120px; top: 1480px; height: 130px; font-size: 58px; }
+  </style>
+  <div id="root" data-composition-id="ocho" data-width="1080" data-height="1920">
+    <div class="pg" id="ocho-pg">
+      <div class="meta" style="left:56px;top:28px">DRAGUZ SHOP</div>
+      <div class="meta" style="right:56px;top:28px">P. 02</div>
+      <div id="oc-big"><span class="m"><span class="mi">8</span></span></div>
+      <div class="tape" id="oc-ap">A PARTIR DE</div>
+      <div id="oc-pl"><span class="m"><span class="mi">Playeras</span></span></div>
+      <div class="stk oc-t" id="oc-t1" style="left:40px;top:250px;transform:rotate(-12deg)"></div><div class="stk oc-t" id="oc-t2" style="left:800px;top:230px;transform:rotate(10deg)"></div><div class="stk oc-t" id="oc-t3" style="left:20px;top:980px;transform:rotate(8deg)"></div><div class="stk oc-t" id="oc-t4" style="left:830px;top:900px;transform:rotate(-9deg)"></div><div class="stk oc-t" id="oc-t5" style="left:60px;top:1600px;transform:rotate(-6deg)"></div><div class="stk oc-t" id="oc-t6" style="left:810px;top:1560px;transform:rotate(12deg)"></div><div class="stk oc-t" id="oc-t7" style="left:300px;top:1660px;transform:rotate(4deg)"></div><div class="stk oc-t" id="oc-t8" style="left:560px;top:1690px;transform:rotate(-8deg)"></div>
+      <div class="tape" id="oc-may">PRECIO DE MAYOREO</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ocho-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { ap: 0.25, n: 0.55, pl: 0.85, may: 1.9 };
+    tl.fromTo("#oc-ap", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, T.ap);
+    tl.fromTo("#oc-big .mi", { yPercent: 100 }, { yPercent: 0, duration: 0.45, ease: "expo.out" }, T.n);
+    for (let i = 1; i <= 8; i++) tl.fromTo(`#oc-t${i}`, { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" }, T.n + 0.08 * i);
+    tl.fromTo("#oc-pl .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "expo.out" }, T.pl);
+    tl.fromTo("#oc-may", { opacity: 0, scale: 2, rotation: -16 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.25, ease: "power4.in" }, T.may);
+    window.__timelines["ocho"] = tl;
+  </script>
+</template>

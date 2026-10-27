@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    #po-mast { position: absolute; left: 50px; top: 60px; font-size: 230px; font-weight: 900; letter-spacing: -0.06em; line-height: 0.85; }
+    #po-shop { z-index: 2; right: 60px; top: 272px; width: 210px; height: 74px; font-size: 46px; transform: rotate(-4deg); }
+    #po-q { position: absolute; left: 56px; top: 330px; font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; }
+    .po-w { position: absolute; left: 50px; font-size: 190px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 1; }
+    #po-w1 { top: 470px; } #po-w2 { top: 680px; } #po-w3 { top: 890px; }
+    #po-w2 .mi { color: #e3000f; }
+    #po-tee { position: absolute; left: 470px; top: 1130px; width: 620px; height: 680px; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    #po-dots { left: 0; top: 1150px; width: 520px; height: 600px; }
+  </style>
+  <div id="root" data-composition-id="portada" data-width="1080" data-height="1920">
+    <div class="pg" id="portada-pg">
+      <div class="meta" style="left:56px;top:28px">VOL. 01 — NO. 08</div>
+      <div class="meta" style="right:56px;top:28px">MAYOREO</div>
+      <div id="po-mast" data-layout-allow-overflow>DRAGUZ</div>
+      <div class="tape" id="po-shop">SHOP</div>
+      <div class="rule" style="left:56px;right:56px;top:300px"></div>
+      <div id="po-q">¿PLAYERAS PARA TU…</div>
+      <div class="po-w" id="po-w1"><span class="m"><span class="mi">Equipo</span></span></div>
+      <div class="po-w" id="po-w2"><span class="m"><span class="mi">Evento</span></span></div>
+      <div class="po-w" id="po-w3"><span class="m"><span class="mi">Negocio</span></span></div>
+      <div class="dots" id="po-dots"></div>
+      <div class="stk" id="po-tee"></div>
+      <div class="meta" style="left:56px;top:1820px">DRAGUZSHOP.COM</div>
+      <div class="meta" style="right:56px;top:1820px">P. 01</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#portada-pg", { yPercent: 0, rotation: 0 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { w: [1.0, 1.85, 2.55] };
+    tl.fromTo("#po-tee", { rotation: -14, scale: 0.85 }, { rotation: -6, scale: 1, duration: 0.6, ease: "back.out(1.6)", immediateRender: true }, 0);
+    T.w.forEach((t, i) => { tl.fromTo(`#po-w${i + 1} .mi`, { yPercent: 105 }, { yPercent: 0, duration: 0.35, ease: "expo.out" }, t); });
+    tl.to("#po-tee", { rotation: 4, x: -30, duration: 1.2, ease: "power2.inOut" }, 1.6);
+    window.__timelines["portada"] = tl;
+  </script>
+</template>
