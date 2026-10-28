@@ -1,0 +1,55 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #cm-h { position: absolute; left: 56px; top: 110px; font-size: 180px; font-weight: 900; letter-spacing: -0.07em; line-height: 1; text-transform: uppercase; }
+    #cm-q { position: absolute; left: 56px; top: 310px; font-size: 84px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; color: #e3000f; white-space: nowrap; }
+    .cm-b { position: absolute; left: 60px; background: #ffffff; border-radius: 34px 34px 34px 8px; box-shadow: 10px 16px 30px rgba(0, 0, 0, 0.25); padding: 26px 36px; font-size: 44px; font-weight: 700; white-space: nowrap; }
+    .cm-b b { display: block; font-family: "JB", monospace; font-size: 30px; color: #6b6672; margin-bottom: 8px; }
+    #cm-b1 { top: 520px; } #cm-b2 { top: 760px; left: 160px; } #cm-b3 { top: 1000px; }
+    #cm-man { left: 560px; top: 640px; width: 520px; height: 1180px; background-image: url(assets/img/heroe/pose-pulgar-playera.png); }
+    #cm-in { position: absolute; left: 40px; right: 40px; top: 1660px; height: 120px; border-radius: 60px; background: #0d0d0f; color: #ffffff; font-size: 44px; font-weight: 700; display: flex; align-items: center; padding-left: 50px; z-index: 2; }
+    #cm-cur { display: inline-block; width: 4px; height: 50px; background: #e3000f; margin-left: 6px; }
+  </style>
+  <div id="root" data-composition-id="comenta" data-width="1080" data-height="1920">
+    <div class="pg" id="comenta-pg">
+      <div class="meta" style="left:56px;top:28px">COMENTA</div>
+      <div class="meta" style="right:56px;top:28px">P. 08</div>
+      <div id="cm-h"><span class="m"><span class="mi">Comenta</span></span></div>
+      <div id="cm-q"><span class="m"><span class="mi">¿Qué diseño quieres?</span></span></div>
+      <div class="cut stk" id="cm-man"></div>
+      <div class="cm-b" id="cm-b1"><b>@cliente</b>Uno de anime</div>
+      <div class="cm-b" id="cm-b2"><b>@cliente</b>Mi logo en oversize</div>
+      <div class="cm-b" id="cm-b3"><b>@cliente</b>¡Algo con rayos!</div>
+      <div id="cm-in"><span>Escribe tu idea…</span><span id="cm-cur"></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#comenta-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    tl.fromTo("#cm-h .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.25);
+    tl.fromTo("#cm-q .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.75);
+    tl.fromTo("#cm-man", { y: 900 }, { y: 0, duration: 0.45, ease: "back.out(1.3)" }, 0.3);
+    ["#cm-b1", "#cm-b2", "#cm-b3"].forEach((b, i) => tl.fromTo(b, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)", transformOrigin: "0% 100%" }, 1.0 + i * 0.35));
+    tl.fromTo("#cm-in", { y: 200 }, { y: 0, duration: 0.35, ease: "power3.out" }, 0.5);
+    tl.to("#cm-cur", { opacity: 0, duration: 0.25, repeat: 7, yoyo: true, ease: "none" }, 0.9);
+    window.__timelines["comenta"] = tl;
+  </script>
+</template>

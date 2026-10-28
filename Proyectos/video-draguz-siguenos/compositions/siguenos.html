@@ -1,0 +1,71 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #sg-h { position: absolute; left: 56px; top: 110px; font-size: 76px; font-weight: 900; letter-spacing: -0.04em; text-transform: uppercase; }
+    #sg-big { position: absolute; left: 40px; top: 200px; font-size: 190px; font-weight: 900; letter-spacing: -0.08em; line-height: 1; color: #e3000f; white-space: nowrap; }
+    #sg-card { position: absolute; left: 60px; top: 520px; width: 600px; height: 330px; background: #ffffff; border-radius: 28px; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.3); }
+    #sg-av { position: absolute; left: 34px; top: 34px; width: 130px; height: 130px; border-radius: 50%; background: #0d0d0f url(assets/img/logo.png) center / 88% no-repeat; border: 5px solid #e3000f; }
+    #sg-name { position: absolute; left: 190px; top: 50px; font-size: 46px; font-weight: 900; letter-spacing: -0.03em; }
+    #sg-user { position: absolute; left: 190px; top: 110px; font-family: "JB", monospace; font-size: 30px; font-weight: 700; color: #6b6672; }
+    #sg-btn { position: absolute; left: 34px; top: 200px; width: 532px; height: 96px; border-radius: 16px; background: #e3000f; color: #ffffff; font-size: 44px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+    #sg-btn2 { position: absolute; left: 34px; top: 200px; width: 532px; height: 96px; border-radius: 16px; background: #0d0d0f; color: #ffffff; font-size: 44px; font-weight: 900; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    #sg-hand { position: absolute; left: 420px; top: 760px; width: 120px; height: 120px; border-radius: 50%; background: rgba(13, 13, 15, 0.25); border: 6px solid #0d0d0f; }
+    #sg-man { left: 560px; top: 560px; width: 520px; height: 1380px; background-image: url(assets/img/heroe/pose-senalando.png); background-position: center top; transform: scaleX(-1); -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 66%); mask-image: linear-gradient(180deg, #000 55%, transparent 66%); }
+    #sg-tag { left: 60px; top: 1500px; width: 780px; height: 96px; font-size: 42px; transform: rotate(-2deg); z-index: 2; }
+    #sg-sub { left: 120px; top: 1640px; width: 600px; height: 86px; font-size: 38px; transform: rotate(2deg); background: #0d0d0f; z-index: 2; }
+  </style>
+  <div id="root" data-composition-id="siguenos" data-width="1080" data-height="1920">
+    <div class="pg" id="siguenos-pg">
+      <div class="meta" style="left:56px;top:28px">SÍGUENOS</div>
+      <div class="meta" style="right:56px;top:28px">P. 06</div>
+      <div id="sg-h"><span class="m"><span class="mi">Si te gustó…</span></span></div>
+      <div id="sg-big"><span class="m"><span class="mi">SÍGUENOS</span></span></div>
+      <div class="cut glow" id="sg-man"></div>
+      <div id="sg-card" data-layout-allow-overlap>
+        <div id="sg-av"></div>
+        <div id="sg-name">Draguz Shop</div>
+        <div id="sg-user">@draguz_shop</div>
+        <div id="sg-btn">+ SEGUIR</div>
+        <div id="sg-btn2">SIGUIENDO</div>
+      </div>
+      <div id="sg-hand"></div>
+      <div class="tape" id="sg-tag">DISEÑOS NUEVOS CADA SEMANA</div>
+      <div class="tape" id="sg-sub">FACEBOOK · INSTAGRAM · TIKTOK</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#siguenos-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    tl.fromTo("#sg-h .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.3);
+    tl.fromTo("#sg-big .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.95);
+    tl.fromTo("#sg-man", { x: 700, filter: "blur(10px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.2);
+    tl.fromTo("#sg-card", { scale: 0.4, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -2, duration: 0.4, ease: "back.out(1.6)" }, 0.5);
+    tl.fromTo("#sg-hand", { x: 300, y: 400, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 1.0);
+    tl.to("#sg-hand", { scale: 0.7, duration: 0.08, yoyo: true, repeat: 1 }, 1.45);
+    tl.to("#sg-btn", { scale: 0.92, duration: 0.08, yoyo: true, repeat: 1 }, 1.45);
+    tl.to("#sg-btn2", { opacity: 1, duration: 0.05 }, 1.55);
+    tl.to("#sg-hand", { opacity: 0, duration: 0.3 }, 1.8);
+    tl.fromTo("#sg-tag", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, 1.85);
+    tl.fromTo("#sg-sub", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, 2.6);
+    tl.to("#sg-man", { x: -16, duration: 0.3, repeat: 3, yoyo: true, ease: "sine.inOut" }, 2.0);
+    window.__timelines["siguenos"] = tl;
+  </script>
+</template>

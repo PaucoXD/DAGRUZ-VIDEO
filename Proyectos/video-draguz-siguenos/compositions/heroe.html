@@ -1,0 +1,63 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .sl { position: absolute; height: 10px; border-radius: 6px; background: linear-gradient(90deg, rgba(227, 0, 15, 0), #e3000f 60%, #ffffff); }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; stroke-linejoin: miter; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #he-run { left: 0; top: 380px; width: 760px; height: 920px; background-image: url(assets/img/heroe/pose-corriendo.png); -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
+    #he-hero { left: 150px; top: 170px; width: 780px; height: 1265px; background-image: url(assets/img/heroe/draguz-heroe-oficial.png); }
+    #he-ring { position: absolute; left: 240px; top: 1300px; width: 600px; height: 120px; border: 10px solid #e3000f; border-radius: 50%; opacity: 0; }
+    #he-ca { left: 80px; top: 1420px; width: 560px; height: 86px; font-size: 44px; transform: rotate(-3deg); background: #0d0d0f; z-index: 2; }
+    #he-n { position: absolute; left: 0; right: 0; top: 1490px; text-align: center; font-size: 150px; font-weight: 900; letter-spacing: -0.06em; white-space: nowrap; line-height: 1; color: #e3000f; }
+    #he-ro { right: 70px; top: 1700px; width: 700px; height: 86px; font-size: 40px; transform: rotate(2deg); }
+    #he-fl { position: absolute; inset: 0; background: #ffffff; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="heroe" data-width="1080" data-height="1920">
+    <div class="pg" id="heroe-pg">
+      <div class="meta" style="left:56px;top:28px">DRAGUZ SHOP</div>
+      <div class="meta" style="right:56px;top:28px">P. 02</div>
+      <div class="sl he-sl" data-layout-allow-overflow style="left:-900px;top:520px;width:900px"></div><div class="sl he-sl" data-layout-allow-overflow style="left:-900px;top:700px;width:1200px"></div><div class="sl he-sl" data-layout-allow-overflow style="left:-900px;top:880px;width:800px"></div><div class="sl he-sl" data-layout-allow-overflow style="left:-900px;top:1060px;width:1100px"></div><div class="sl he-sl" data-layout-allow-overflow style="left:-900px;top:1220px;width:700px"></div>
+      <div class="cut" id="he-run"></div>
+      <div id="he-ring"></div>
+      <div class="cut glow" id="he-hero"></div>
+      <svg class="bolt" id="he-b1" style="left:90px;top:260px;width:120px;height:240px;transform:rotate(-15deg)" viewBox="0 0 100 200"><polyline points="60,0 30,90 62,95 20,200" /></svg><svg class="bolt" id="he-b2" style="left:860px;top:420px;width:110px;height:220px;transform:rotate(20deg)" viewBox="0 0 100 200"><polyline points="60,0 30,90 62,95 20,200" /></svg><svg class="bolt" id="he-b3" style="left:120px;top:900px;width:90px;height:180px;transform:rotate(10deg)" viewBox="0 0 100 200"><polyline points="60,0 30,90 62,95 20,200" /></svg>
+      <div class="tape" id="he-ca">EN DRAGUZ SHOP</div>
+      <div id="he-n"><span class="m"><span class="mi">A TU MEDIDA</span></span></div>
+      <div class="tape" id="he-ro">PLAYERAS PERSONALIZADAS</div>
+      <div id="he-fl"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#heroe-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const T = { ca: 0.2, n: 1.0, ro: 1.6 };
+    // pasa corriendo y aterriza
+    tl.fromTo(".he-sl", { x: 0 }, { x: 2400, duration: 0.45, stagger: 0.03, ease: "power2.in" }, 0.15);
+    tl.fromTo("#he-run", { x: -800, filter: "blur(8px)" }, { x: 1300, filter: "blur(4px)", duration: 0.45, ease: "power1.in" }, 0.15);
+    tl.fromTo("#he-hero", { y: -1500, scale: 1.25, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.25, ease: "power4.in" }, 0.55);
+    tl.fromTo("#he-fl", { opacity: 0 }, { opacity: 0.85, duration: 0.04 }, 0.8);
+    tl.to("#he-fl", { opacity: 0, duration: 0.4, ease: "power2.out" }, 0.84);
+    tl.fromTo("#heroe-pg", { x: 0 }, { x: 18, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 0.8);
+    tl.fromTo("#he-ring", { scale: 0.3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.5, ease: "power2.out", immediateRender: false }, 0.8);
+    ["#he-b1", "#he-b2", "#he-b3"].forEach((b, i) => tl.fromTo(b, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.08, repeat: 3, yoyo: true, ease: "none" }, 0.82 + i * 0.12));
+    tl.to("#he-hero", { y: -14, duration: 0.9, repeat: 2, yoyo: true, ease: "sine.inOut" }, 1.1);
+    tl.fromTo("#he-ca", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, T.ca);
+    tl.fromTo("#he-n .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, T.n);
+    tl.fromTo("#he-ro", { opacity: 0, scale: 1.8, rotation: -10 }, { opacity: 1, scale: 1, rotation: 2, duration: 0.25, ease: "power4.in" }, T.ro);
+    window.__timelines["heroe"] = tl;
+  </script>
+</template>

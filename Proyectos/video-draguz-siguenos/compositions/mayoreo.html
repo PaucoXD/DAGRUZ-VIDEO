@@ -1,0 +1,56 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #ma-h { position: absolute; left: 56px; top: 120px; font-size: 170px; font-weight: 900; letter-spacing: -0.07em; line-height: 1; }
+    #ma-d { position: absolute; left: 60px; top: 330px; font-family: "JB", monospace; font-size: 56px; font-weight: 700; letter-spacing: 0.1em; }
+    #ma-8 { position: absolute; left: 0; right: 0; top: 380px; text-align: center; font-size: 900px; font-weight: 900; line-height: 1; color: #e3000f; letter-spacing: -0.08em; }
+    #ma-p { position: absolute; left: 0; right: 0; top: 1330px; text-align: center; font-size: 130px; font-weight: 900; letter-spacing: -0.06em; text-transform: uppercase; }
+    #ma-tag { left: 260px; top: 1560px; width: 560px; height: 86px; font-size: 40px; transform: rotate(2deg); background: #0d0d0f; }
+    .ma-t { position: absolute; width: 220px; height: 260px; background-image: url(assets/img/tee-regular.png); }
+  </style>
+  <div id="root" data-composition-id="mayoreo" data-width="1080" data-height="1920">
+    <div class="pg" id="mayoreo-pg">
+      <div class="meta" style="left:56px;top:28px">MAYOREO</div>
+      <div class="meta" style="right:56px;top:28px">P. 05</div>
+      <div id="ma-h"><span class="m"><span class="mi">Mayoreo</span></span></div>
+      <div id="ma-d">DESDE</div>
+      <div id="ma-8" data-layout-allow-overflow>8</div>
+      <div class="cut ma-t" style="left:40px;top:560px"></div>
+      <div class="cut ma-t" style="left:820px;top:520px"></div>
+      <div class="cut ma-t" style="left:60px;top:1000px"></div>
+      <div class="cut ma-t" style="left:800px;top:980px"></div>
+      <div id="ma-p"><span class="m"><span class="mi">playeras</span></span></div>
+      <div class="tape" id="ma-tag">PRECIO DE MAYOREO</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#mayoreo-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    tl.fromTo("#ma-h .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.25);
+    tl.fromTo("#ma-d", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.7);
+    tl.fromTo("#ma-8", { scale: 2.4, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.3, ease: "power4.in" }, 1.0);
+    tl.fromTo("#mayoreo-pg", { x: 0 }, { x: 14, duration: 0.05, repeat: 3, yoyo: true, ease: "none" }, 1.3);
+    tl.fromTo(".ma-t", { scale: 0, rotation: -30 }, { scale: 1, rotation: 8, duration: 0.3, stagger: 0.08, ease: "back.out(2)" }, 1.3);
+    tl.fromTo("#ma-p .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 1.5);
+    tl.fromTo("#ma-tag", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, 1.8);
+    window.__timelines["mayoreo"] = tl;
+  </script>
+</template>

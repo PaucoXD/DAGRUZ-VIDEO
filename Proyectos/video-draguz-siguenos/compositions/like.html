@@ -1,0 +1,46 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .out { color: #eeeae1; -webkit-text-stroke: 4px #0d0d0f; }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+    .cut { position: absolute; background-repeat: no-repeat; background-size: contain; background-position: center bottom; }
+    .glow { filter: drop-shadow(0 0 18px rgba(227, 0, 15, 0.55)) drop-shadow(14px 24px 18px rgba(0, 0, 0, 0.35)); }
+    .ph { position: absolute; border: 14px solid #ffffff; box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.35); overflow: hidden; background: #15121d; }
+    .ph .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .bolt { position: absolute; overflow: visible; }
+    .bolt polyline { fill: none; stroke: #e3000f; stroke-width: 12; filter: drop-shadow(0 0 10px #ff2a2a); }
+    #lk-heart { position: absolute; left: 240px; top: 300px; width: 600px; height: 600px; filter: drop-shadow(0 20px 30px rgba(227, 0, 15, 0.4)); }
+    .lk-s { position: absolute; }
+    #lk-h { position: absolute; left: 0; right: 0; top: 1000px; text-align: center; font-size: 230px; font-weight: 900; letter-spacing: -0.08em; line-height: 0.95; text-transform: uppercase; }
+    #lk-h .m:nth-of-type(2) .mi { color: #e3000f; }
+  </style>
+  <div id="root" data-composition-id="like" data-width="1080" data-height="1920">
+    <div class="pg" id="like-pg">
+      <div class="meta" style="left:56px;top:28px">DALE LIKE</div>
+      <div class="meta" style="right:56px;top:28px">P. 07</div>
+      <div id="lk-heart"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div>
+      <div class="lk-s" style="left:150px;top:1100px;width:90px;height:90px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:820px;top:1050px;width:110px;height:110px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:300px;top:1300px;width:70px;height:70px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:700px;top:1350px;width:80px;height:80px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:480px;top:1450px;width:100px;height:100px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:90px;top:800px;width:60px;height:60px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:900px;top:820px;width:70px;height:70px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div>
+      <div id="lk-h"><span class="m"><span class="mi">Dale</span></span><br /><span class="m"><span class="mi">like</span></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#like-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    tl.fromTo("#lk-heart", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.5)" }, 0.3);
+    tl.to("#lk-heart", { scale: 1.12, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.65);
+    tl.fromTo("#lk-h .m:nth-of-type(1) .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.33);
+    tl.fromTo("#lk-h .m:nth-of-type(2) .mi", { yPercent: 105 }, { yPercent: 0, duration: 0.4, ease: "expo.out" }, 0.55);
+    tl.fromTo(".lk-s", { y: 200, scale: 0, opacity: 1 }, { y: -500, scale: 1, opacity: 0, duration: 0.9, stagger: 0.05, ease: "power2.out" }, 0.4);
+    window.__timelines["like"] = tl;
+  </script>
+</template>
