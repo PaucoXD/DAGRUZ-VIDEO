@@ -1,0 +1,46 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .tee { position: absolute; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    #pr-h { top: 230px; font-size: 100px; }
+    .pr-c { position: absolute; left: 60px; right: 60px; height: 400px; border-radius: 30px; background: rgba(20, 14, 34, 0.75); border: 4px solid rgba(160, 120, 255, 0.4); box-shadow: 0 0 40px rgba(160, 120, 255, 0.25); }
+    #pr-c1 { top: 400px; } #pr-c2 { top: 840px; } #pr-c3 { top: 1280px; height: 430px; }
+    .pr-t { position: absolute; left: 44px; top: 36px; font-size: 76px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+    .pr-k { position: absolute; left: 44px; display: flex; flex-wrap: wrap; gap: 14px; width: 900px; }
+    .pr-k span { padding: 12px 22px; border-radius: 14px; background: rgba(255, 255, 255, 0.1); font-family: "JB", monospace; font-size: 34px; font-weight: 700; letter-spacing: 0.04em; opacity: 0; }
+    .pr-k span.r { background: #e3000f; }
+    #pr-k1 { top: 150px; width: 560px; } #pr-k2 { top: 150px; } #pr-k3 { top: 150px; }
+    #pr-tee { position: absolute; right: 30px; top: 30px; width: 320px; height: 340px; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    .pr-n { position: absolute; right: 44px; top: 36px; font-family: "JB", monospace; font-size: 40px; font-weight: 700; color: #8a84a0; }
+  </style>
+  <div id="root" data-composition-id="prendas" data-width="1080" data-height="1920">
+    <div id="prendas-sc">
+      <div class="h" id="pr-h"><span class="w">Elige tu prenda</span></div>
+      <div class="pr-c" id="pr-c1"><div id="pr-tee" class="glowp"></div><div class="pr-t">Playera</div>
+        <div class="pr-k" id="pr-k1"><span class="r">100% ALGODÓN</span><span>REGULAR</span><span>OVERSIZE</span></div></div>
+      <div class="pr-c" id="pr-c2"><div class="pr-n">02</div><div class="pr-t">Polo</div>
+        <div class="pr-k" id="pr-k2"><span class="r">50% ALGODÓN</span><span class="r">50% POLIÉSTER</span></div></div>
+      <div class="pr-c" id="pr-c3"><div class="pr-n">03</div><div class="pr-t">Polo <span class="acc">premium</span></div>
+        <div class="pr-k" id="pr-k3"><span class="r">TIPO DRI FIT</span><span>PIQUÉ 100% POLIÉSTER</span><span>210 G/M²</span><span class="r">TRANSPIRA · MÁS CÓMODA</span></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#prendas-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.1].forEach((t, i) => tl.fromTo(`#pr-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [["#pr-c1", 1.0], ["#pr-c2", 4.7], ["#pr-c3", 7.8]].forEach(([c, t], i) => {
+      tl.fromTo(c, { x: i % 2 ? 1000 : -1000, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "back.out(1.3)" }, t);
+      tl.to(c, { borderColor: "#e3000f", boxShadow: "0 0 50px rgba(227, 0, 15, 0.45)", duration: 0.2 }, t);
+      if (i < 2) tl.to(c, { borderColor: "rgba(160, 120, 255, 0.4)", boxShadow: "0 0 40px rgba(160, 120, 255, 0.25)", duration: 0.2 }, [4.6, 7.7][i]);
+    });
+    [[1.5, 2.9, 3.4], [5.4, 6.4], [8.4, 10.2, 11.8, 13.3]].forEach((ts, i) => ts.forEach((t, j) => tl.fromTo(`#pr-k${i + 1} span:nth-child(${j + 1})`, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, t)));
+    tl.to("#prendas-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 15.7 - 0.22);
+    window.__timelines["prendas"] = tl;
+  </script>
+</template>

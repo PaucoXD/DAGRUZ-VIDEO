@@ -1,0 +1,39 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .tee { position: absolute; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .so-r { position: absolute; left: 60px; right: 60px; height: 380px; border-radius: 30px; background: rgba(20, 14, 34, 0.75); border: 4px solid rgba(160, 120, 255, 0.4); }
+    #so-r1 { top: 400px; } #so-r2 { top: 840px; } #so-r3 { top: 1280px; }
+    .so-t { position: absolute; left: 50px; top: 40px; font-size: 110px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+    #so-btn { position: absolute; left: 50px; top: 200px; width: 420px; height: 110px; border-radius: 18px; background: #e3000f; font-size: 50px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+    #so-btn2 { position: absolute; left: 50px; top: 200px; width: 420px; height: 110px; border-radius: 18px; background: #ffffff; color: #0d0d0f; font-size: 50px; font-weight: 900; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    #so-av { position: absolute; right: 50px; top: 60px; width: 260px; height: 260px; border-radius: 50%; background: #0d0d0f url(assets/img/logo.png) center / 88% no-repeat; border: 6px solid #e3000f; }
+    #so-heart { position: absolute; right: 50px; top: 90px; width: 220px; height: 200px; filter: drop-shadow(0 0 30px rgba(227, 0, 15, 0.7)); }
+    #so-b { position: absolute; left: 50px; top: 190px; background: #ffffff; color: #0d0d0f; border-radius: 30px 30px 30px 8px; padding: 22px 34px; font-size: 46px; font-weight: 700; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="social" data-width="1080" data-height="1920">
+    <div id="social-sc">
+      <div class="so-r" id="so-r1" data-layout-allow-overlap><div class="so-t">Síguenos</div><div id="so-btn">+ SEGUIR</div><div id="so-btn2">SIGUIENDO</div><div id="so-av"></div></div>
+      <div class="so-r" id="so-r2"><div class="so-t">Dale <span class="acc">like</span></div><div id="so-heart"><svg viewBox="0 0 100 90" style="width:100%;height:100%"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div></div>
+      <div class="so-r" id="so-r3"><div class="so-t">Etiqueta</div><div id="so-b">@coach_beto ¡para el torneo!</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#social-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [["#so-r1", 0.15], ["#so-r2", 0.85], ["#so-r3", 1.7]].forEach(([r, t], i) => tl.fromTo(r, { x: i % 2 ? 1000 : -1000, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: "back.out(1.3)" }, t));
+    tl.to("#so-btn", { scale: 0.92, duration: 0.08, yoyo: true, repeat: 1 }, 0.55);
+    tl.to("#so-btn2", { opacity: 1, duration: 0.05 }, 0.65);
+    tl.fromTo("#so-heart", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 1.05);
+    tl.to("#so-heart", { scale: 1.12, duration: 0.15, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.35);
+    tl.fromTo("#so-b", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)", transformOrigin: "0% 100%" }, 2.0);
+    tl.to("#social-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 4.1 - 0.22);
+    window.__timelines["social"] = tl;
+  </script>
+</template>

@@ -8,7 +8,7 @@
     .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
     .tee { position: absolute; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
     .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
-    #ma-q { top: 260px; font-size: 110px; white-space: nowrap; }
+    #ma-q { top: 260px; font-size: 94px; white-space: nowrap; }
     #ma-h { top: 470px; font-size: 64px; color: #c9c3d8; }
     #ma-m { top: 560px; font-size: 92px; white-space: nowrap; }
     #ma-8 { position: absolute; left: 0; right: 0; top: 660px; text-align: center; font-size: 560px; font-weight: 900; line-height: 1; color: #e3000f; text-shadow: 0 0 60px rgba(227, 0, 15, 0.6); }
@@ -16,23 +16,23 @@
   </style>
   <div id="root" data-composition-id="mayoreo" data-width="1080" data-height="1920">
     <div id="mayoreo-sc">
-      <div class="h" id="ma-q"><span class="w">¿Son muchos?</span></div>
-      <div class="h" id="ma-h"><span class="w">Pedidos grandes</span></div>
-      <div class="h" id="ma-m"><span class="w">Mayoreo desde</span></div>
+      <div class="h" id="ma-q"><span class="w">Pedidos grandes</span></div>
+      <div class="h" id="ma-h"><span class="w">Precio de mayoreo</span></div>
+      <div class="h" id="ma-m"><span class="w">desde</span></div>
       <div id="ma-8">8</div>
-      <div class="h" id="ma-p"><span class="w">playeras</span></div>
+      <div class="h" id="ma-p"><span class="w">piezas</span></div>
     </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#mayoreo-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
-    [0.1].forEach((t, i) => tl.fromTo(`#ma-q .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
-    [0.9].forEach((t, i) => tl.fromTo(`#ma-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
-    [2.1].forEach((t, i) => tl.fromTo(`#ma-m .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
-    [3.4].forEach((t, i) => tl.fromTo(`#ma-p .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
-    tl.fromTo("#ma-8", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 2.8);
-    tl.fromTo("#mayoreo-sc", { y: 0 }, { y: 12, duration: 0.05, repeat: 3, yoyo: true, ease: "none" }, 3.1);
-    tl.to("#mayoreo-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 4.5 - 0.22);
+    [0.26].forEach((t, i) => tl.fromTo(`#ma-q .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [1.2].forEach((t, i) => tl.fromTo(`#ma-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [2.0].forEach((t, i) => tl.fromTo(`#ma-m .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [2.6].forEach((t, i) => tl.fromTo(`#ma-p .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo("#ma-8", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 2.2);
+    tl.fromTo("#mayoreo-sc", { y: 0 }, { y: 12, duration: 0.05, repeat: 3, yoyo: true, ease: "none" }, 2.5);
+    tl.to("#mayoreo-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 3.5 - 0.22);
     window.__timelines["mayoreo"] = tl;
   </script>
 </template>

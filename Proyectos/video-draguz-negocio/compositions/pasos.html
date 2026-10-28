@@ -29,8 +29,8 @@
       <div class="ps-c" id="ps-2">
         <div class="ps-n">2</div>
         <div class="ps-icw"><svg class="ps-ic" viewBox="0 0 300 300"><path d="M150 30 a120 120 0 1 1 -62 222 L40 268 L56 222 A120 120 0 0 1 150 30 Z" fill="#25d366" /><path d="M95 150 L132 187 L208 112" fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
-        <div class="ps-t">Confirma por WhatsApp</div>
-        <div class="ps-s" id="ps-s2">CONFIRMAMOS LOS DETALLES</div>
+        <div class="ps-t">Mándanos WhatsApp</div>
+        <div class="ps-s" id="ps-s2" style="font-family:Montserrat;font-size:110px;font-weight:900;color:#25d366;letter-spacing:0;top:1180px">81 2341 2206</div>
       </div>
       <div class="ps-c" id="ps-3">
         <div class="ps-n">3</div>
@@ -44,11 +44,11 @@
         <div class="ps-t">Te las llevamos</div>
         <div class="ps-s" id="ps-s4">A DOMICILIO O EN PUNTO MEDIO</div>
       </div>
-      <div id="ps-fin">Pedir es<br /><em>muy fácil</em></div>
+      
     </div>
   </div>
   <script>
-    const T = { c: [1.55, 4.1, 6.0, 10.5], s: [2.9, 4.6, 8.4, 11.2], cal: 8.2, fin: 0.05, end: 13.5 };
+    const T = { c: [0.05, 2.0, 6.7, 10.5], s: [0.8, 3.3, 8.6, 11.0], cal: 8.5, fin: 0.05, end: 12.9 };
     const tl = gsap.timeline({ paused: true });
     T.c.forEach((t, i) => {
       const n = i + 1;
@@ -62,8 +62,6 @@
     });
     tl.to("#ps-50", { opacity: 0, scale: 0.6, duration: 0.2 }, T.cal - 0.1);
     tl.fromTo("#ps-cal", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, T.cal);
-    tl.fromTo("#ps-fin", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, T.fin);
-    tl.to("#ps-fin", { opacity: 0, scale: 0.8, duration: 0.2, ease: "power2.in" }, T.c[0] - 0.2);
     tl.to("#ps-scene", { y: -200, opacity: 0, filter: "blur(14px)", duration: 0.2, ease: "power3.in" }, T.end - 0.2);
     window.__timelines["pasos"] = tl;
   </script>
