@@ -1,0 +1,38 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; box-shadow: 0 0 40px rgba(160, 120, 255, 0.45), 0 20px 50px rgba(0, 0, 0, 0.5); border: 3px solid rgba(201, 195, 216, 0.35); }
+    .card .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    #ma-h { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 120px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+    #ma-d { top: 470px; font-size: 48px; }
+    #ma-8 { position: absolute; left: 0; right: 0; top: 520px; text-align: center; font-size: 640px; font-weight: 900; line-height: 1; color: #e3000f; text-shadow: 0 0 60px rgba(227, 0, 15, 0.6); }
+    #ma-p { position: absolute; left: 0; right: 0; top: 1200px; text-align: center; font-size: 120px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+    #ma-s { top: 1360px; font-size: 40px; }
+  </style>
+  <div id="root" data-composition-id="mayoreo" data-width="1080" data-height="1920">
+    <div id="mayoreo-sc">
+      <div id="ma-h"><span class="w">Mayoreo</span></div>
+      <div class="chip" id="ma-d">DESDE</div>
+      <div id="ma-8">8</div>
+      <div id="ma-p"><span class="w">playeras</span></div>
+      <div class="chip" id="ma-s">PRECIO DE MAYOREO</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#mayoreo-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.15].forEach((t, i) => tl.fromTo(`#ma-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [1.3].forEach((t, i) => tl.fromTo(`#ma-p .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo("#ma-d", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.6);
+    tl.fromTo("#ma-8", { scale: 2.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 0.85);
+    tl.fromTo("#mayoreo-sc", { y: 0 }, { y: 12, duration: 0.05, repeat: 3, yoyo: true, ease: "none" }, 1.15);
+    tl.fromTo("#ma-s", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.0);
+    tl.to("#mayoreo-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 2.05 - 0.22);
+    window.__timelines["mayoreo"] = tl;
+  </script>
+</template>

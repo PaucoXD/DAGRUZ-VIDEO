@@ -1,0 +1,29 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; box-shadow: 0 0 40px rgba(160, 120, 255, 0.45), 0 20px 50px rgba(0, 0, 0, 0.5); border: 3px solid rgba(201, 195, 216, 0.35); }
+    .card .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .gc-c { top: 260px; width: 470px; height: 560px; }
+    #gc-c1 { left: 50px; transform: rotate(-4deg); } #gc-c2 { left: 560px; transform: rotate(4deg); }
+    #gc-q { position: absolute; left: 40px; right: 40px; top: 960px; text-align: center; font-size: 124px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+  </style>
+  <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+    <div id="gancho-sc">
+      <div class="card gc-c" id="gc-c1"><div class="im" style="background-image:url(assets/img/disenos/01-samurai-oversize.jpg)"></div></div>
+      <div class="card gc-c" id="gc-c2"><div class="im" style="background-image:url(assets/img/disenos/02-gato-regular.jpg)"></div></div>
+      <div id="gc-q"><span class="w">¿Buscas</span><br /><span class="w acc">playeras</span><br /><span class="w">con estilo?</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+        [0.3, 0.62, 0.95].forEach((t, i) => tl.fromTo(`#gc-q .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo(".gc-c", { scale: 0.85, y: 40 }, { scale: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "back.out(1.5)" }, 0.02);
+    tl.to("#gancho-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 2.1 - 0.22);
+    window.__timelines["gancho"] = tl;
+  </script>
+</template>
