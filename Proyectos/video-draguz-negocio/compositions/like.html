@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; box-shadow: 0 0 40px rgba(160, 120, 255, 0.45), 0 20px 50px rgba(0, 0, 0, 0.5); border: 3px solid rgba(201, 195, 216, 0.35); }
+    .card .im { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    #lk-heart { position: absolute; left: 270px; top: 380px; width: 540px; height: 540px; filter: drop-shadow(0 0 50px rgba(227, 0, 15, 0.7)); }
+    .lk-s { position: absolute; }
+    #lk-h { position: absolute; left: 0; right: 0; top: 1020px; text-align: center; font-size: 200px; font-weight: 900; letter-spacing: -0.06em; line-height: 0.95; text-transform: uppercase; }
+  </style>
+  <div id="root" data-composition-id="like" data-width="1080" data-height="1920">
+    <div id="like-sc">
+      <div id="lk-heart"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div>
+      <div class="lk-s" style="left:150px;top:1000px;width:90px;height:90px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:820px;top:950px;width:110px;height:110px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:300px;top:1200px;width:70px;height:70px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:700px;top:1250px;width:80px;height:80px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:480px;top:1350px;width:100px;height:100px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:90px;top:700px;width:60px;height:60px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div><div class="lk-s" style="left:900px;top:720px;width:70px;height:70px"><svg viewBox="0 0 100 90"><path d="M50 88 C20 65 0 48 0 26 C0 11 12 0 26 0 C37 0 45 6 50 14 C55 6 63 0 74 0 C88 0 100 11 100 26 C100 48 80 65 50 88Z" fill="#e3000f"/></svg></div>
+      <div id="lk-h"><span class="w">Dale</span><br /><span class="w acc">like</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#like-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.1, 0.3].forEach((t, i) => tl.fromTo(`#lk-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo("#lk-heart", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(2.5)" }, 0.08);
+    tl.fromTo(".lk-s", { y: 200, scale: 0, opacity: 1 }, { y: -450, scale: 1, opacity: 0, duration: 0.6, stagger: 0.03, ease: "power2.out" }, 0.2);
+    tl.to("#like-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 0.9 - 0.22);
+    window.__timelines["like"] = tl;
+  </script>
+</template>

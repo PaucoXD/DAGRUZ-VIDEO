@@ -1,0 +1,32 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .tee { position: absolute; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    #df-h { top: 520px; font-size: 170px; }
+    #df-bar { position: absolute; left: 90px; right: 90px; top: 930px; height: 120px; display: flex; gap: 12px; }
+    .df-sw { flex: 1; border-radius: 14px; box-shadow: 0 0 24px rgba(255, 255, 255, 0.15); }
+    #df-s { top: 1130px; font-size: 96px; }
+  </style>
+  <div id="root" data-composition-id="dtf" data-width="1080" data-height="1920">
+    <div id="dtf-sc">
+      <div class="h" id="df-h"><span class="w">DTF</span><br /><span class="w acc">textil</span></div>
+      <div id="df-bar"><div class="df-sw" style="background:#e3000f"></div><div class="df-sw" style="background:#ff7a00"></div><div class="df-sw" style="background:#ffd60a"></div><div class="df-sw" style="background:#25d366"></div><div class="df-sw" style="background:#1e90ff"></div><div class="df-sw" style="background:#8a2be2"></div><div class="df-sw" style="background:#ff2d95"></div></div>
+      <div class="h" id="df-s"><span class="w">Colores vivos</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dtf-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.2, 0.45].forEach((t, i) => tl.fromTo(`#df-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [1.35].forEach((t, i) => tl.fromTo(`#df-s .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo(".df-sw", { scaleY: 0 }, { scaleY: 1, duration: 0.3, stagger: 0.06, ease: "back.out(2)" }, 1.1);
+    tl.to("#dtf-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 2.6 - 0.22);
+    window.__timelines["dtf"] = tl;
+  </script>
+</template>

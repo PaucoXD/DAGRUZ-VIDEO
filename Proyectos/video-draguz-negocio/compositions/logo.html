@@ -1,0 +1,37 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; }
+    .chip { position: absolute; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; text-align: center; left: 0; right: 0; }
+    .glowp { filter: drop-shadow(0 0 26px rgba(160, 120, 255, 0.55)); }
+    .tee { position: absolute; background: url(assets/img/tee-regular.png) center / contain no-repeat; }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    #lg-h { top: 230px; font-size: 96px; }
+    #lg-tee { left: 190px; top: 470px; width: 700px; height: 760px; }
+    #lg-stamp { position: absolute; left: 440px; top: 690px; width: 200px; height: 200px; border-radius: 50%; border: 8px dashed #e3000f; display: flex; align-items: center; justify-content: center; font-family: "JB", monospace; font-size: 34px; font-weight: 700; color: #ffffff; text-align: center; line-height: 1.1; background: rgba(227, 0, 15, 0.25); }
+    #lg-name { position: absolute; left: 0; right: 0; top: 920px; text-align: center; font-size: 52px; font-weight: 900; letter-spacing: 0.06em; color: #ffffff; }
+    #lg-s { top: 1300px; font-size: 80px; }
+  </style>
+  <div id="root" data-composition-id="logo" data-width="1080" data-height="1920">
+    <div id="logo-sc">
+      <div class="h" id="lg-h"><span class="w">Personalizamos</span></div>
+      <div class="tee glowp" id="lg-tee"></div>
+      <div id="lg-stamp">TU<br />LOGO</div>
+      <div id="lg-name">TU NOMBRE</div>
+      <div class="h" id="lg-s"><span class="w">Con tu <span class="acc">logo</span></span><br /><span class="w">o tu <span class="acc">nombre</span></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#logo-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.3].forEach((t, i) => tl.fromTo(`#lg-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    [1.75, 2.55].forEach((t, i) => tl.fromTo(`#lg-s .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, t));
+    tl.fromTo("#lg-tee", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.4)" }, 0.4);
+    tl.fromTo("#lg-stamp", { scale: 2.5, opacity: 0, rotation: -20 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.25, ease: "power4.in" }, 1.75);
+    tl.fromTo("#lg-name", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 2.55);
+    tl.to("#logo-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 3.7 - 0.22);
+    window.__timelines["logo"] = tl;
+  </script>
+</template>
