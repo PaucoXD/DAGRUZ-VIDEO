@@ -1,0 +1,30 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; } .gr { color: #5dff8b; text-shadow: 0 0 30px rgba(93, 255, 139, 0.55); }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .chip { position: absolute; left: 0; right: 0; text-align: center; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 0 50px rgba(93, 255, 139, 0.3), 0 20px 50px rgba(0, 0, 0, 0.6); border: 3px solid rgba(93, 255, 139, 0.35); }
+    .tag { position: absolute; padding: 14px 26px; border-radius: 14px; background: #e3000f; font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; }
+    #ca-n { top: 1330px; font-size: 140px; }
+    #ca-s { top: 1500px; font-size: 80px; }
+  </style>
+  <div id="root" data-composition-id="carrusel" data-width="1080" data-height="1920">
+    <div id="carrusel-sc">
+      <div class="card ca-c" style="left:40px;top:260px;width:320px;height:320px;background-image:url(assets/img/doom/doctor-doom-escudo-tormenta.jpg)"></div><div class="card ca-c" style="left:380px;top:260px;width:320px;height:320px;background-image:url(assets/img/doom/dr-doom-trono-tormenta.jpg)"></div><div class="card ca-c" style="left:720px;top:260px;width:320px;height:320px;background-image:url(assets/img/doom/doom-capucha-tormenta.jpg)"></div><div class="card ca-c" style="left:40px;top:600px;width:320px;height:320px;background-image:url(assets/img/doom/doom-rayo-tormenta.jpg)"></div><div class="card ca-c" style="left:380px;top:600px;width:320px;height:320px;background-image:url(assets/img/doom/doom-poster-tormenta.jpg)"></div><div class="card ca-c" style="left:720px;top:600px;width:320px;height:320px;background-image:url(assets/img/doom/doom-rosa-tormenta.jpg)"></div><div class="card ca-c" style="left:40px;top:940px;width:320px;height:320px;background-image:url(assets/img/doom/doctor-doom-latveria-tormenta.jpg)"></div><div class="card ca-c" style="left:380px;top:940px;width:320px;height:320px;background-image:url(assets/img/doom/doctor-doom-brazos-tormenta.jpg)"></div><div class="card ca-c" style="left:720px;top:940px;width:320px;height:320px;background-image:url(assets/img/doom/doctor-doom-tormenta.jpg)"></div>
+      <div class="h" id="ca-n"><span class="w gr">9 versiones</span></div>
+      <div class="h" id="ca-s"><span class="w">para elegir</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#carrusel-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [2.75].forEach((t, i) => tl.fromTo(`#ca-n .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, t));
+    [3.2].forEach((t, i) => tl.fromTo(`#ca-s .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, t));
+    [0.2, 0.8, 1.4, 2.0, 2.2, 2.35, 2.5, 2.65, 2.8].forEach((t, i) => tl.fromTo(`.ca-c:nth-of-type(${i + 1})`, { scale: 0, rotation: i % 2 ? 10 : -10 }, { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" }, t));
+    tl.to("#carrusel-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 4.5 - 0.22);
+    window.__timelines["carrusel"] = tl;
+  </script>
+</template>

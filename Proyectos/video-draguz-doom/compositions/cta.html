@@ -1,0 +1,44 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; } .gr { color: #5dff8b; text-shadow: 0 0 30px rgba(93, 255, 139, 0.55); }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .chip { position: absolute; left: 0; right: 0; text-align: center; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 0 50px rgba(93, 255, 139, 0.3), 0 20px 50px rgba(0, 0, 0, 0.6); border: 3px solid rgba(93, 255, 139, 0.35); }
+    .tag { position: absolute; padding: 14px 26px; border-radius: 14px; background: #e3000f; font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; }
+    #ct-h { top: 160px; font-size: 100px; }
+    #ct-chat { position: absolute; left: 90px; right: 90px; top: 420px; height: 560px; border-radius: 36px; background: rgba(20, 14, 34, 0.8); border: 3px solid rgba(201, 195, 216, 0.35); }
+    .ct-b { position: absolute; border-radius: 34px 34px 8px 34px; padding: 26px 40px; font-size: 64px; font-weight: 900; white-space: nowrap; }
+    #ct-b1 { right: 40px; top: 50px; background: #25d366; color: #0d0d0f; font-size: 110px; letter-spacing: -0.02em; }
+    #ct-b2 { right: 40px; top: 260px; background: #25d366; color: #0d0d0f; font-size: 48px; }
+    #ct-b3 { left: 40px; top: 400px; background: #ffffff; color: #0d0d0f; border-radius: 34px 34px 34px 8px; font-size: 44px; }
+    #ct-n { top: 1080px; font-size: 56px; color: #c9c3d8; }
+    #ct-num { position: absolute; left: 0; right: 0; top: 1160px; text-align: center; font-size: 140px; font-weight: 900; color: #25d366; letter-spacing: -0.02em; text-shadow: 0 0 40px rgba(37, 211, 102, 0.5); }
+  </style>
+  <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
+    <div id="cta-sc">
+      <div class="h" id="ct-h"><span class="w">Mándanos mensaje</span></div>
+      <div id="ct-chat" data-layout-allow-overlap>
+        <div class="ct-b" id="ct-b1">DOOM</div>
+        <div class="ct-b" id="ct-b2">Lo quiero tamaño grande</div>
+        <div class="ct-b" id="ct-b3">¡Te cotizamos al momento!</div>
+      </div>
+      <div class="h" id="ct-n"><span class="w">WhatsApp</span></div>
+      <div id="ct-num">81 2341 2206</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cta-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.1].forEach((t, i) => tl.fromTo(`#ct-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, t));
+    [4.2].forEach((t, i) => tl.fromTo(`#ct-n .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, t));
+    tl.fromTo("#ct-chat", { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.3);
+    [["#ct-b1", 1.3], ["#ct-b2", 2.5], ["#ct-b3", 3.4]].forEach(([b, t], i) => tl.fromTo(b, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)", transformOrigin: i < 2 ? "100% 100%" : "0% 100%" }, t));
+    tl.fromTo("#ct-num", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power4.in" }, 4.4);
+    tl.to("#ct-num", { scale: 1.06, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 4.8);
+    tl.to("#cta-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 6.9 - 0.22);
+    window.__timelines["cta"] = tl;
+  </script>
+</template>

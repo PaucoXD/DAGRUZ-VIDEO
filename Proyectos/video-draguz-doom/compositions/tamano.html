@@ -1,0 +1,44 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #ffffff; }
+    .w { display: inline-block; opacity: 0; margin: 0 0.08em; }
+    .acc { color: #e3000f; } .gr { color: #5dff8b; text-shadow: 0 0 30px rgba(93, 255, 139, 0.55); }
+    .h { position: absolute; left: 40px; right: 40px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1.02; }
+    .chip { position: absolute; left: 0; right: 0; text-align: center; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.1em; color: #c9c3d8; }
+    .card { position: absolute; border-radius: 26px; overflow: hidden; background-size: cover; background-position: center; box-shadow: 0 0 50px rgba(93, 255, 139, 0.3), 0 20px 50px rgba(0, 0, 0, 0.6); border: 3px solid rgba(93, 255, 139, 0.35); }
+    .tag { position: absolute; padding: 14px 26px; border-radius: 14px; background: #e3000f; font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; }
+    #tm-h { top: 170px; font-size: 92px; }
+    #tm-tee { position: absolute; left: 90px; top: 420px; width: 900px; height: 960px; background: url(assets/img/tee-oversize.png) center / contain no-repeat; filter: drop-shadow(0 0 40px rgba(93, 255, 139, 0.35)); }
+    #tm-d { position: absolute; left: 540px; top: 640px; width: 520px; height: 612px; margin-left: -260px; background: url(assets/img/doom/doom-rayo-contorno.png) center top / contain no-repeat; transform-origin: 50% 0%; }
+    #tm-l { position: absolute; left: 0; right: 0; top: 1440px; display: flex; justify-content: center; gap: 24px; }
+    .tm-s { padding: 18px 34px; border-radius: 16px; border: 4px solid rgba(201, 195, 216, 0.5); font-size: 50px; font-weight: 900; text-transform: uppercase; color: #8a84a0; }
+    #tm-s1 { } #tm-s2 { } #tm-s3 { }
+    #tm-n { top: 1600px; font-size: 42px; }
+  </style>
+  <div id="root" data-composition-id="tamano" data-width="1080" data-height="1920">
+    <div id="tamano-sc">
+      <div class="h" id="tm-h"><span class="w">Tú decides</span><br /><span class="w gr">el tamaño</span></div>
+      <div id="tm-tee"></div>
+      <div id="tm-d"></div>
+      <div id="tm-l"><div class="tm-s" id="tm-s1">Chico</div><div class="tm-s" id="tm-s2">Mediano</div><div class="tm-s" id="tm-s3">Grande</div></div>
+      <div class="chip" id="tm-n">DEL PECHO A TODO EL FRENTE</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tamano-sc", { x: 1080 }, { x: 0, duration: 0.25, ease: "power3.out", immediateRender: true }, 0);
+    [0.2, 0.7].forEach((t, i) => tl.fromTo(`#tm-h .w:nth-of-type(${i + 1})`, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, t));
+    tl.fromTo("#tm-tee", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.3)" }, 0.3);
+    tl.fromTo("#tm-d", { scale: 0 }, { scale: 0.32, duration: 0.35, ease: "back.out(2)" }, 2.1);
+    tl.to("#tm-d", { scale: 0.62, duration: 0.35, ease: "back.out(2)" }, 4.2);
+    tl.to("#tm-d", { scale: 1, duration: 0.4, ease: "back.out(2)" }, 5.7);
+    [["#tm-s1", 2.1], ["#tm-s2", 4.2], ["#tm-s3", 5.7]].forEach(([s, t], i, a) => {
+      tl.to(s, { color: "#ffffff", borderColor: "#5dff8b", backgroundColor: "rgba(93, 255, 139, 0.18)", scale: 1.08, duration: 0.2 }, t);
+      if (i < 2) tl.to(s, { color: "#8a84a0", borderColor: "rgba(201, 195, 216, 0.5)", backgroundColor: "rgba(0, 0, 0, 0)", scale: 1, duration: 0.2 }, a[i + 1][1]);
+    });
+    tl.fromTo("#tm-n", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.9);
+    tl.to("#tamano-sc", { x: -1080, duration: 0.22, ease: "power3.in" }, 7.8 - 0.22);
+    window.__timelines["tamano"] = tl;
+  </script>
+</template>
