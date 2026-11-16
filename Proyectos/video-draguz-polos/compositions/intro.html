@@ -1,0 +1,62 @@
+<template>
+  <style>
+    @font-face { font-family: "JB"; font-weight: 700; src: url(assets/fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #0d0d0f; }
+    .pg { position: absolute; inset: 0; background: url(assets/img/paper.jpg) center / cover; box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.45); }
+    .dots { position: absolute; background-image: radial-gradient(#0d0d0f 28%, transparent 30%); background-size: 22px 22px; opacity: 0.12; }
+    .meta { position: absolute; font-family: "JB", monospace; font-size: 30px; font-weight: 700; letter-spacing: 0.12em; color: #0d0d0f; }
+    .rule { position: absolute; height: 6px; background: #0d0d0f; }
+    .m { display: inline-block; overflow: hidden; vertical-align: top; }
+    .mi { display: inline-block; }
+    .tape { position: absolute; background: #e3000f; color: #ffffff; font-family: "JB", monospace; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); white-space: nowrap; }
+    .stk { filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(10px 16px 14px rgba(0, 0, 0, 0.35)); }
+    .polo { position: absolute; }
+    .pimg { position: absolute; inset: 0; background-size: 100% 100%; clip-path: polygon(41.1% 4.7%,43.5% 7.8%,57.5% 7.8%,60.2% 4.1%,64% 8.5%,80% 15.7%,87.5% 22.7%,94.6% 31.8%,95.3% 33.9%,87.9% 44.4%,75.6% 41.4%,76.2% 58.8%,77.4% 78.4%,77% 96.6%,50% 96%,21.6% 94.5%,22.5% 78.4%,23.6% 58.8%,24.4% 42.7%,13.8% 44.4%,5.8% 36.7%,6.5% 34.5%,12.5% 24.3%,19% 16.9%,37.3% 8.5%); }
+    .p-cl { background-image: url(assets/img/polo-clasica.jpg); }
+    .p-pr { background-image: url(assets/img/polo-premium.jpg); }
+    .plogo { position: absolute; left: 60.5%; top: 24.5%; width: 4em; height: 4em; border-radius: 50%; background: #ffd400; border: 0.22em solid #e3000f; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; font-size: 1em; line-height: 0.95; color: #0d0d0f; letter-spacing: -0.02em; }
+    .cal { position: absolute; display: flex; align-items: center; opacity: 0; }
+    .cal .ln { height: 4px; width: 90px; background: #0d0d0f; }
+    .cal .tx { font-family: "JB", monospace; font-size: 40px; font-weight: 700; letter-spacing: 0.06em; background: #e3000f; color: #ffffff; padding: 14px 22px; white-space: nowrap; }
+    .price { position: absolute; background: #ffffff; border: 10px solid #0d0d0f; font-weight: 900; font-size: 150px; letter-spacing: -0.05em; padding: 0 34px; line-height: 1.15; box-shadow: 12px 12px 0 #e3000f; opacity: 0; }
+    .hh { position: absolute; left: 56px; right: 56px; top: 110px; font-size: 140px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; line-height: 0.92; }
+    .hh em { font-style: normal; color: #e3000f; }
+
+    #in-logo { position: absolute; left: 140px; width: 800px; top: 90px; height: 330px; background: url(assets/img/logo.png) center / contain no-repeat; }
+    #in-h1 { position: absolute; left: 56px; top: 450px; font-size: 250px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.06em; line-height: 0.9; }
+    #in-h2 { position: absolute; left: 56px; top: 690px; font-size: 104px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; line-height: 1; color: #e3000f; }
+    #in-p1 { left: -30px; top: 880px; } #in-p2 { left: 470px; top: 960px; }
+    #in-two { left: 220px; right: 220px; top: 1560px; height: 130px; font-size: 62px; }
+    .in-n { position: absolute; top: 1720px; font-size: 110px; font-weight: 900; letter-spacing: -0.05em; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1080" data-height="1920">
+    <div class="pg" id="intro-pg">
+
+      <div class="meta" style="left:56px;top:28px">DRAGUZ SHOP</div>
+      <div class="meta" style="right:56px;top:28px">P. 02</div>
+      <div id="in-logo"></div>
+      <div id="in-h1"><span class="m"><span class="mi">Polos</span></span></div>
+      <div id="in-h2"><span class="m"><span class="mi">personalizadas</span></span></div>
+      <div class="stk polo" id="in-p1" style="width:640px;height:680px;font-size:24.0px"><div class="pimg p-cl"></div><div class="plogo" data-layout-ignore><span data-layout-ignore>TU</span><span data-layout-ignore>LOGO</span></div></div>
+      <div class="stk polo" id="in-p2" style="width:640px;height:680px;font-size:24.0px"><div class="pimg p-pr"></div><div class="plogo" data-layout-ignore><span data-layout-ignore>TU</span><span data-layout-ignore>LOGO</span></div></div>
+      <div class="tape" id="in-two">2 OPCIONES</div>
+      <div class="in-n" id="in-n1" style="left:150px">01</div>
+      <div class="in-n" id="in-n2" style="right:150px;color:#e3000f">02</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#intro-pg", { yPercent: 105, rotation: 4 }, { yPercent: 0, rotation: 0, duration: 0.4, ease: "power3.out", immediateRender: true }, 0);
+    const up = (sel, t, d = 0.35) => tl.fromTo(sel, { yPercent: 105 }, { yPercent: 0, duration: d, ease: "expo.out" }, t);
+    const slam = (sel, t, rot = 0) => tl.fromTo(sel, { opacity: 0, scale: 2, rotation: rot - 12 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.25, ease: "power4.in" }, t);
+    const wipe = (sel, t) => tl.fromTo(sel, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "power3.out" }, t);
+    const cal = (sel, t) => { tl.set(sel, { opacity: 1 }, t); wipe(sel + " .tx", t); tl.fromTo(sel + " .ln", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power3.out" }, t + 0.15); };
+
+    tl.fromTo("#in-logo", { scale: 1.5, opacity: 0, rotation: -6 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.25, ease: "power4.in" }, 0.2);
+    up("#in-h1 .mi", 1.55); up("#in-h2 .mi", 2.35);
+    tl.fromTo("#in-p1", { opacity: 0, rotation: -25, y: 300 }, { opacity: 1, rotation: -7, y: 0, duration: 0.5, ease: "back.out(1.4)" }, 1.0);
+    tl.fromTo("#in-p2", { opacity: 0, rotation: 25, y: 300 }, { opacity: 1, rotation: 6, y: 0, duration: 0.5, ease: "back.out(1.4)" }, 1.2);
+    slam("#in-two", 3.65, -4); slam("#in-n1", 3.95); slam("#in-n2", 4.2);
+    window.__timelines["intro"] = tl;
+  </script>
+</template>

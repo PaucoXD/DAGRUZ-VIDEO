@@ -11,6 +11,7 @@ Videos promocionales verticales (9:16) de Draguz Shop para Reels, TikTok y Short
 | Cotiza en 10 segundos | 22 s |
 | DTF textil vs DTF UV | 26 s |
 | Diseños listos para estampar | 23 s |
+| Polos para tu negocio (proyecto `video-draguz-polos`) | 31 s |
 
 ## Proyectos/
 
